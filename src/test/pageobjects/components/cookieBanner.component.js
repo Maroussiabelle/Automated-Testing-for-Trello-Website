@@ -14,12 +14,7 @@ export default class CookieBanner {
   }
 
   async tryClose() {
-    /* eslint-disable no-unused-vars, no-empty */
-    try {
-      await this.cookieBanner.click()
-      await this.rejectAllBtn.click()
-    } catch (ignored) {
-    }
-    /* eslint-enable no-unused-vars, no-empty */
+    await this.cookieBanner.click()
+    await this.rejectAllBtn.click()
   }
 }
