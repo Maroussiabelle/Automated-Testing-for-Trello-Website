@@ -17,6 +17,8 @@ export default [
       'func-call-spacing': ['error', 'never'],
       'space-in-parens': ['error', 'never'],
     },
+  },
+  {
     ignores: ['src/configs/wdio.conf.js'],
   },
 ]
