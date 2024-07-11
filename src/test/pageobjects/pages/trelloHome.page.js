@@ -1,5 +1,5 @@
 import {browser} from '@wdio/globals'
-import Header from '../components/header.component.js'
+import HomepageHeader from '../components/homepageHeader.component.js'
 
 
 export default class TrelloHomePage {
@@ -8,6 +8,6 @@ export default class TrelloHomePage {
   }
 
   constructor() {
-    this.header = new Header()
+    this.homepageHeader = new HomepageHeader()
   }
 }

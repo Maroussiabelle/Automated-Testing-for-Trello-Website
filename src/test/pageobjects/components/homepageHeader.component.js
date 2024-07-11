@@ -6,7 +6,7 @@ const selectors = {
   getTrelloForFreeButton: '.kTwZBr.lhSFdZ',
 }
 
-export default class Header {
+export default class HomepageHeader {
   get rootEl() {
     return $('.BigNavstyles__NavBar-sc-1mttgq7-3.caTbTe')
   }
