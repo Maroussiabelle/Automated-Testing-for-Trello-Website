@@ -11,7 +11,7 @@ const dashboardPage = new DashboardPage()
 const profilePage = new ProfilePage()
 
 describe('Trello site functionality', () => {
-  before('should login', async () => {
+  before('should open homepage and login', async () => {
     await trelloHomepage.open()
     await trelloHomepage.loginBtn.click()
     await loginPage.login(process.env.TRELLO_EMAIL, process.env.PASSWORD)
@@ -22,6 +22,7 @@ describe('Trello site functionality', () => {
     const currentUrl = await browser.getUrl()
     expect(currentUrl).toBe('https://trello.com/u/jstestswdio2/boards')
   })
+
 
   it('should edit user profile information by updating username', async () => {
     await dashboardPage.header.item('accountButton').click()
@@ -34,11 +35,7 @@ describe('Trello site functionality', () => {
         .getText()
 
     expect(newUsername).toEqual('@jstestswdio2_updated')
-
-    await profilePage.profileDataContainer.item('usernameInputField')
-        .setValue('jstestswdio2')
-    await profilePage.profileDataContainer.item('saveButton').click()
-    await profilePage.flagGroup.item('savedCheckbox').waitForDisplayed()
+    await profilePage.cleanUp()
   })
 })
 
