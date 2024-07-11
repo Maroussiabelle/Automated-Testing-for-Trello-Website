@@ -12,6 +12,7 @@ export default class LoginPage {
     await this.loginForm.item('loginBtn').click()
   }
 
+
   constructor() {
     this.loginForm = new LoginFormComponent()
   }

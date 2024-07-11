@@ -1,5 +1,6 @@
-import {browser} from '@wdio/globals'
-import HomepageHeader from '../components/homepageHeader.component.js'
+import {$, browser} from '@wdio/globals'
+
+// getTrelloForFreeButton: '.kTwZBr.lhSFdZ',
 
 
 export default class TrelloHomePage {
@@ -7,7 +8,7 @@ export default class TrelloHomePage {
     await browser.url('https://trello.com/')
   }
 
-  constructor() {
-    this.homepageHeader = new HomepageHeader()
+  get loginBtn() {
+    return $('a[data-uuid="MJFtCCgVhXrVl7v9HA7EH_login"]')
   }
 }

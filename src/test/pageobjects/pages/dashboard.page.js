@@ -1,8 +1,8 @@
-import DashboardHeader from '../components/dashboardHeader.component.js'
+import Header from '../components/header.component.js'
 
 
 export default class DashboardPage {
   constructor() {
-    this.dashboardHeader = new DashboardHeader()
+    this.header = new Header()
   }
 }
