@@ -17,9 +17,16 @@ export default class ProfilePage {
   async open() {
     await browser.url('https://trello.com/u/jstestswdio2')
   }
-  async cleanUp() {
+  async updateUsername(newUsername) {
     await this.profileDataContainer.item('usernameInputField')
-        .setValue('jstestswdio2')
+        .setValue(newUsername)
+    await this.profileDataContainer.item('saveButton').click()
+    await this.flagGroup.item('savedCheckbox').waitForDisplayed()
+  }
+
+  async revertUsername(originalUsername) {
+    await this.profileDataContainer.item('usernameInputField')
+        .setValue(originalUsername)
     await this.profileDataContainer.item('saveButton').click()
     await this.flagGroup.item('savedCheckbox').waitForDisplayed()
   }

@@ -9,6 +9,9 @@ const trelloHomepage = new TrelloHomePage()
 const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 const profilePage = new ProfilePage()
+const originalUsername = 'jstestswdio2'
+const newUsername = 'jstestswdio2_updated'
+
 
 describe('Trello site functionality', () => {
   before('should open homepage and login', async () => {
@@ -16,6 +19,10 @@ describe('Trello site functionality', () => {
     await trelloHomepage.loginBtn.click()
     await loginPage.login(process.env.TRELLO_EMAIL, process.env.PASSWORD)
     await dashboardPage.header.item('accountButton').waitForDisplayed()
+  })
+
+  after('should revert changes of username', async () => {
+    await profilePage.revertUsername(originalUsername)
   })
 
   it('should open Trello homepage and login as a registered user', async () => {
@@ -27,15 +34,11 @@ describe('Trello site functionality', () => {
   it('should edit user profile information by updating username', async () => {
     await dashboardPage.header.item('accountButton').click()
     await dashboardPage.accountMenu.item('profileAndVisibilityButton').click()
-    await profilePage.profileDataContainer.item('usernameInputField')
-        .setValue('jstestswdio2_updated')
-    await profilePage.profileDataContainer.item('saveButton').click()
-    await profilePage.flagGroup.item('savedCheckbox').waitForDisplayed()
-    const newUsername = await profilePage.headerMemberDetail.item('username')
+    await profilePage.updateUsername(newUsername)
+    const updatedUsername = await profilePage.headerMemberDetail
+        .item('username')
         .getText()
-
-    expect(newUsername).toEqual('@jstestswdio2_updated')
-    await profilePage.cleanUp()
+    expect(updatedUsername).toEqual('@jstestswdio2_updated')
   })
 })
 
