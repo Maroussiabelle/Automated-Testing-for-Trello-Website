@@ -3,14 +3,13 @@ import LoginPage from '../pageobjects/pages/login.page.js'
 import {browser} from '@wdio/globals'
 import DashboardPage from '../pageobjects/pages/dashboard.page.js'
 import ProfilePage from '../pageobjects/pages/profile.page.js'
+import {TEST_DATA} from '../data/test.data.js'
 
 
 const trelloHomepage = new TrelloHomePage()
 const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 const profilePage = new ProfilePage()
-const originalUsername = 'jstestswdio2'
-const newUsername = 'jstestswdio2_updated'
 
 
 describe('Trello site functionality', () => {
@@ -22,7 +21,7 @@ describe('Trello site functionality', () => {
   })
 
   after('should revert changes of username', async () => {
-    await profilePage.revertUsername(originalUsername)
+    await profilePage.revertUsername(TEST_DATA.originalUsername)
   })
 
   it('should open Trello homepage and login as a registered user', async () => {
@@ -32,12 +31,9 @@ describe('Trello site functionality', () => {
 
 
   it('should edit user profile information by updating username', async () => {
-    await dashboardPage.header.item('accountButton').click()
-    await dashboardPage.accountMenu.item('profileAndVisibilityButton').click()
-    await profilePage.updateUsername(newUsername)
-    const updatedUsername = await profilePage.headerMemberDetail
-        .item('username')
-        .getText()
+    await dashboardPage.openProfileAndVisibilitySettings()
+    await profilePage.updateUsername(TEST_DATA.newUsername)
+    const updatedUsername = await profilePage.getUsername()
     expect(updatedUsername).toEqual('@jstestswdio2_updated')
   })
 })

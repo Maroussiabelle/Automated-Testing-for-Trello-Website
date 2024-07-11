@@ -11,4 +11,8 @@ export default class DashboardPage {
   async open() {
     await browser.url('https://trello.com/u/jstestswdio2/boards')
   }
+  async openProfileAndVisibilitySettings() {
+    await this.header.item('accountButton').click()
+    await this.accountMenu.item('profileAndVisibilityButton').click()
+  }
 }

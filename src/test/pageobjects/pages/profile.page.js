@@ -17,6 +17,12 @@ export default class ProfilePage {
   async open() {
     await browser.url('https://trello.com/u/jstestswdio2')
   }
+
+
+  async getUsername() {
+    return await this.headerMemberDetail.item('username').getText()
+  }
+
   async updateUsername(newUsername) {
     await this.profileDataContainer.item('usernameInputField')
         .setValue(newUsername)
