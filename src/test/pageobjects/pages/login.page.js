@@ -1,41 +1,20 @@
-import {$} from '@wdio/globals'
-import TrelloHomePage from './TrelloHome.page.js'
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
-class LoginPage extends TrelloHomePage {
-  /**
-     * define selectors using getter methods
-     */
-  get inputUsername() {
-    return $('#username')
+import LoginFormComponent from '../components/loginForm.component.js'
+
+
+export default class LoginPage {
+  async login(email, password) {
+    await this.loginForm.item('emailField').setValue(email)
+    await this.loginForm.item('continueBtn').click()
+    await this.loginForm.item('passwordField').waitForDisplayed()
+    await this.loginForm.item('passwordField').waitForEnabled()
+    await this.loginForm.item('passwordField').setValue(password)
+    await this.loginForm.item('loginBtn').click()
   }
 
-  get inputPassword() {
-    return $('#password')
-  }
-
-  get btnSubmit() {
-    return $('button[type="submit"]')
-  }
-
-  /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
-     */
-  async login(username, password) {
-    await this.inputUsername.setValue(username)
-    await this.inputPassword.setValue(password)
-    await this.btnSubmit.click()
-  }
-
-  /**
-     * overwrite specific options to adapt it to page object
-     */
-  open() {
-    return super.open('login')
+  constructor() {
+    this.loginForm = new LoginFormComponent()
   }
 }
 
-export default new LoginPage()
+
