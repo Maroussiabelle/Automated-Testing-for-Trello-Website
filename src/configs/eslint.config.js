@@ -4,7 +4,11 @@ import google from 'eslint-config-google'
 
 
 export default [
-  {languageOptions: {globals: {...globals.node, ...globals.mocha}}},
+  {
+    languageOptions: {
+      globals: {...globals.node, ...globals.mocha, ...globals.jest},
+    },
+  },
   pluginJs.configs.recommended,
   {
     ...google,
