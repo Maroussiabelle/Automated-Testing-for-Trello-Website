@@ -20,10 +20,6 @@ describe('Trello site functionality', () => {
     await dashboardPage.header.item('accountButton').waitForDisplayed()
   })
 
-  after('should revert changes of username', async () => {
-    await profilePage.revertUsername(TEST_DATA.originalUsername)
-  })
-
   it('should open Trello homepage and login as a registered user', async () => {
     const currentUrl = await browser.getUrl()
     expect(currentUrl).toBe('https://trello.com/u/jstestswdio2/boards')
@@ -35,6 +31,7 @@ describe('Trello site functionality', () => {
     await profilePage.updateUsername(TEST_DATA.newUsername)
     const updatedUsername = await profilePage.getUsername()
     expect(updatedUsername).toEqual('@jstestswdio2_updated')
+    await profilePage.revertUsername(TEST_DATA.originalUsername)
   })
 })
 
