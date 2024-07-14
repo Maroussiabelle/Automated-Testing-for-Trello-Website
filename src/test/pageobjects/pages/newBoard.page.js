@@ -17,4 +17,9 @@ export default class NewBoardPage {
         'div > span.leC8WfkzmokiUl > button.frrHNIWnTojsww.GDunJzzgFqQY_3.' +
         'bxgKMAm3lq5BpA.HAVwIqCeMHpVKh.SEj5vUdI3VvxDc > span > span')
   }
+
+  async closeBoard() {
+    await this.menuButton.click()
+    await this.boardSettingsMenu.item('closeBoardBtn').click()
+  }
 }
