@@ -4,29 +4,30 @@ import {browser} from '@wdio/globals'
 import DashboardPage from '../pageobjects/pages/dashboard.page.js'
 import ProfilePage from '../pageobjects/pages/profile.page.js'
 import {TEST_DATA} from '../data/test.data.js'
+import NewBoardPage from '../pageobjects/pages/newBoard.page.js'
 
 
 const trelloHomepage = new TrelloHomePage()
 const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 const profilePage = new ProfilePage()
+const newBoardPage = new NewBoardPage()
 
 
-describe('Trello site functionality', () => {
-  before('should open homepage and login', async () => {
+describe('Trello site functionality tests', () => {
+  before('open Trello homepage and login as registered user', async () => {
     await trelloHomepage.open()
     await trelloHomepage.loginBtn.click()
     await loginPage.login(process.env.TRELLO_EMAIL, process.env.PASSWORD)
     await dashboardPage.header.item('accountButton').waitForDisplayed()
   })
 
-  it('should open Trello homepage and login as a registered user', async () => {
+  it('should navigate to user boards page after login', async () => {
     const currentUrl = await browser.getUrl()
     expect(currentUrl).toBe('https://trello.com/u/jstestswdio2/boards')
   })
 
-
-  it('should edit user profile information by updating username', async () => {
+  it('should update the username in the user profile', async () => {
     await dashboardPage.openProfileAndVisibilitySettings()
     await profilePage.updateUsername(TEST_DATA.newUsername)
     const updatedUsername = await profilePage.getUsername()
@@ -34,14 +35,17 @@ describe('Trello site functionality', () => {
     await profilePage.revertUsername(TEST_DATA.originalUsername)
   })
 
-  it('should create a new board', async () => {
-    await dashboardPage.open()
-    await dashboardPage.workspaces.item('createNewBoardButton').click()
-    await dashboardPage.createBoardMenu.
-        item('selectPurpleBackgroundBtn').click()
-    await dashboardPage.createBoardMenu.
-        item('boardTitleInputField').setValue('New board')
-    await dashboardPage.createBoardMenu.item('createBoardBtn').click()
-  })
+
+  it('should create a new board with the specified background and title',
+      async () => {
+        await dashboardPage.open()
+        await dashboardPage.createBoard()
+        const displayedBoardTitle = await dashboardPage.getBoardTitle()
+        expect(displayedBoardTitle).toEqual(TEST_DATA.boardTitle)
+        const backgroundCorrect = await dashboardPage.
+            isBoardBackgroundCorrect(TEST_DATA.backgroundMountainImageId)
+        expect(backgroundCorrect).toBe(true)
+        await newBoardPage.menuButton.click()
+      })
 })
 
