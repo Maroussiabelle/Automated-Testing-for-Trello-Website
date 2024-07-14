@@ -1,10 +1,11 @@
 
 import {$, browser} from '@wdio/globals'
+import BoardSettingsMenu from '../components/boardSettingsMenu.component.js'
 
 
 export default class NewBoardPage {
   constructor() {
-
+    this.boardSettingsMenu = new BoardSettingsMenu()
   }
   async open() {
     await browser.url('https://trello.com/b/JCuRTS0a/new-board')

@@ -46,6 +46,7 @@ describe('Trello site functionality tests', () => {
             isBoardBackgroundCorrect(TEST_DATA.backgroundMountainImageId)
         expect(backgroundCorrect).toBe(true)
         await newBoardPage.menuButton.click()
+        await newBoardPage.boardSettingsMenu.item('closeBoardBtn').click()
       })
 })
 
