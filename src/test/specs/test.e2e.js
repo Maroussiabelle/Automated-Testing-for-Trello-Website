@@ -33,5 +33,15 @@ describe('Trello site functionality', () => {
     expect(updatedUsername).toEqual('@jstestswdio2_updated')
     await profilePage.revertUsername(TEST_DATA.originalUsername)
   })
+
+  it('should create a new board', async () => {
+    await dashboardPage.open()
+    await dashboardPage.workspaces.item('createNewBoardButton').click()
+    await dashboardPage.createBoardMenu.
+        item('selectPurpleBackgroundBtn').click()
+    await dashboardPage.createBoardMenu.
+        item('boardTitleInputField').setValue('New board')
+    await dashboardPage.createBoardMenu.item('createBoardBtn').click()
+  })
 })
 

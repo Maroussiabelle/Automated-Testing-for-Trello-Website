@@ -7,7 +7,7 @@ const selectors = {
 
 export default class Workspaces {
   get rootEl() {
-    return $('div.workspace-boards-page-layout')
+    return $('div.all-boards')
   }
 
   item(param) {
