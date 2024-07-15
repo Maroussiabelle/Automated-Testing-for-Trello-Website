@@ -16,6 +16,6 @@ export default class NewBoardPage {
   async closeBoard() {
     await this.boardHeader.item('menuBtn').click()
     await this.boardSettingsMenu.item('closeBoardBtn').waitForDisplayed()
-    await this.boardHeader.item('closeBoardBtn').click()
+    await this.boardSettingsMenu.item('closeBoardBtn').click()
   }
 }

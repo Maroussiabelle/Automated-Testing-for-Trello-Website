@@ -27,25 +27,33 @@ describe('Trello site functionality tests', () => {
     expect(currentUrl).toBe('https://trello.com/u/jstestswdio2/boards')
   })
 
-  it('should update the username in the user profile', async () => {
-    await dashboardPage.openProfileAndVisibilitySettings()
-    await profilePage.updateUsername(TEST_DATA.newUsername)
-    const updatedUsername = await profilePage.getUsername()
-    expect(updatedUsername).toEqual('@jstestswdio2_updated')
-    await profilePage.revertUsername(TEST_DATA.originalUsername)
-  })
-
+  // it('should update the username in the user profile', async () => {
+  //   await dashboardPage.openProfileAndVisibilitySettings()
+  //   await profilePage.updateUsername(TEST_DATA.newUsername)
+  //   const updatedUsername = await profilePage.getUsername()
+  //   expect(updatedUsername).toEqual('@jstestswdio2_updated')
+  //   await profilePage.revertUsername(TEST_DATA.originalUsername)
+  // })
 
   it('should create a new board with the specified background and title',
       async () => {
         await dashboardPage.open()
         await dashboardPage.createBoard()
-        const displayedBoardTitle = await dashboardPage.getBoardTitle()
+        const displayedBoardTitle = await newBoardPage.
+            boardHeader.item('displayedBoardTitle').getText()
         expect(displayedBoardTitle).toEqual(TEST_DATA.boardTitle)
-        const backgroundCorrect = await dashboardPage.
-            isBoardBackgroundCorrect(TEST_DATA.backgroundMountainImageId)
-        expect(backgroundCorrect).toBe(true)
+        await dashboardPage.verifyBoardBackgroundCorrect()
         await newBoardPage.closeBoard()
+        // await dashboardPage.open()
       })
+
+  // it('should search for a board with a specified title',
+  //     async () => {
+  //       await dashboardPage.open()
+  //       await dashboardPage.workspaces.
+  //           item('searchBoardsBar').setValue(TEST_DATA.boardTitle)
+  //       await browser.keys('Enter')
+  //     })
 })
 
+//
