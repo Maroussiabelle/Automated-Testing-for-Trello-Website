@@ -7,7 +7,7 @@ const selectors = {
 
 export default class Header {
   get rootEl() {
-    return $('nav#header[data-testid="authenticated-header"]')
+    return $('nav#header')
   }
 
 

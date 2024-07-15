@@ -1,15 +1,12 @@
 
 import {$} from '@wdio/globals'
-import {TEST_DATA} from '../../data/test.data.js'
 
 const selectors = {
   // eslint-disable-next-line max-len
-  selectMountainBackgroundBtn: `button.bxgKMAm3lq5BpA.SEj5vUdI3VvxDc[style*="${TEST_DATA.backgroundMountainImageId}"]`,
+  boardBackgroundsBtn: 'span.nch-icon.A3PtEe1rGIm_yL.neoUEAwI0GETBQ.LCBkZyEuShKn0r',
   boardTitleInputField:
       'input.nch-textfield__input.lsOhPsHuxEMYEb.lsOhPsHuxEMYEb.VkPAAkbpkKnPst',
   createBoardBtn: 'button[data-testid="create-board-submit-button"]',
-
-
 }
 
 export default class CreateBoardMenu {
