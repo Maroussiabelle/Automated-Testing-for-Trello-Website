@@ -19,5 +19,6 @@ export default class NewBoardPage {
     await this.boardHeader.item('menuBtn').click()
     await this.boardSettingsMenu.item('closeBoardBtn').click()
     await this.closeBoardPopover.item('closeBtn').click()
+    await this.boardSettingsMenu.item('permanentlyDeleteBoardBtn').click()
   }
 }

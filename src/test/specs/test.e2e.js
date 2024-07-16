@@ -44,7 +44,7 @@ describe('Trello site functionality tests', () => {
         expect(displayedBoardTitle).toEqual(TEST_DATA.boardTitle)
         await dashboardPage.verifyBoardBackgroundCorrect()
         await newBoardPage.closeBoard()
-        // await dashboardPage.open()
+        await dashboardPage.open()
       })
 
   // it('should search for a board with a specified title',
