@@ -1,5 +1,5 @@
 
-import LoginFormComponent from '../components/loginForm.component.js'
+import LoginFormComponent from '../components/login/loginForm.component.js'
 
 
 export default class LoginPage {

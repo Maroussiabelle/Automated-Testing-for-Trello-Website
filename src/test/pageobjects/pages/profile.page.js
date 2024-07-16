@@ -1,10 +1,11 @@
-import Header from '../components/header.component.js'
-import AccountMenu from '../components/accountMenu.component.js'
+import Header from '../components/common/header.component.js'
+import AccountMenu from '../components/common/accountMenu.component.js'
 import {browser} from '@wdio/globals'
 import ProfileDataContainerComponent
-  from '../components/profileDataContainer.component.js'
-import HeaderMemberDetail from '../components/headerMemberDetail.component.js'
-import FlagGroup from '../components/flagGroup.component.js'
+  from '../components/userProfile/profileDataContainer.component.js'
+import HeaderMemberDetail
+  from '../components/userProfile/headerMemberDetail.component.js'
+import FlagGroup from '../components/userProfile/flagGroup.component.js'
 
 export default class ProfilePage {
   constructor() {

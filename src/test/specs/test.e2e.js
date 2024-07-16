@@ -27,13 +27,13 @@ describe('Trello site functionality tests', () => {
     expect(currentUrl).toBe('https://trello.com/u/jstestswdio2/boards')
   })
 
-  // it('should update the username in the user profile', async () => {
-  //   await dashboardPage.openProfileAndVisibilitySettings()
-  //   await profilePage.updateUsername(TEST_DATA.newUsername)
-  //   const updatedUsername = await profilePage.getUsername()
-  //   expect(updatedUsername).toEqual('@jstestswdio2_updated')
-  //   await profilePage.revertUsername(TEST_DATA.originalUsername)
-  // })
+  it('should update the username in the user userProfile', async () => {
+    await dashboardPage.openProfileAndVisibilitySettings()
+    await profilePage.updateUsername(TEST_DATA.newUsername)
+    const updatedUsername = await profilePage.getUsername()
+    expect(updatedUsername).toEqual('@jstestswdio2_updated')
+    await profilePage.revertUsername(TEST_DATA.originalUsername)
+  })
 
   it('should create a new board with the specified background and title',
       async () => {
@@ -43,17 +43,15 @@ describe('Trello site functionality tests', () => {
             boardHeader.item('displayedBoardTitle').getText()
         expect(displayedBoardTitle).toEqual(TEST_DATA.boardTitle)
         await dashboardPage.verifyBoardBackgroundCorrect()
-        await newBoardPage.closeBoard()
-        await dashboardPage.open()
+        // await newBoardPage.deleteBoard()
+        // await dashboardPage.open()
       })
 
-  // it('should search for a board with a specified title',
-  //     async () => {
-  //       await dashboardPage.open()
-  //       await dashboardPage.workspaces.
-  //           item('searchBoardsBar').setValue(TEST_DATA.boardTitle)
-  //       await browser.keys('Enter')
-  //     })
+  it('should search for a board with a specified title', async () => {
+    await dashboardPage.open()
+    await dashboardPage.header.item('searchFieldDiv').click()
+    await dashboardPage.header.item('searchField')
+        .setValue(TEST_DATA.boardTitle)
+    await browser.keys('Enter')
+  })
 })
-
-//

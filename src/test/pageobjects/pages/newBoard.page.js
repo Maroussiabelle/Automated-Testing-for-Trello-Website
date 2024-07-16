@@ -1,8 +1,8 @@
 
 import {browser} from '@wdio/globals'
-import BoardSettingsMenu from '../components/boardSettingsMenu.component.js'
-import BoardHeader from '../components/boardHeader.component.js'
-import CloseBoardPopOver from '../components/closeBoardPopOver.component.js'
+import BoardSettingsMenu from '../components/newBoard/boardSettingsMenu.component.js'
+import BoardHeader from '../components/newBoard/boardHeader.component.js'
+import CloseBoardPopOver from '../components/newBoard/closeBoardPopOver.component.js'
 
 
 export default class NewBoardPage {
@@ -15,7 +15,7 @@ export default class NewBoardPage {
     await browser.url('https://trello.com/b/JCuRTS0a/new-board')
   }
 
-  async closeBoard() {
+  async deleteBoard() {
     await this.boardHeader.item('menuBtn').click()
     await this.boardSettingsMenu.item('closeBoardBtn').click()
     await this.closeBoardPopover.item('closeBtn').click()

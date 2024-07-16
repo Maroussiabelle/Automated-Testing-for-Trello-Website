@@ -1,10 +1,10 @@
-import Header from '../components/header.component.js'
+import Header from '../components/common/header.component.js'
 import {$, browser} from '@wdio/globals'
-import AccountMenu from '../components/accountMenu.component.js'
-import Workspaces from '../components/workspaces.component.js'
-import CreateBoardMenu from '../components/createBoardMenu.component.js'
+import AccountMenu from '../components/common/accountMenu.component.js'
+import Workspaces from '../components/dashboard/workspaces.component.js'
+import CreateBoardMenu from '../components/dashboard/createBoardMenu.component.js'
 import {TEST_DATA} from '../../data/test.data.js'
-import BoardBackgroundPopover from '../components/boardBackgroundPopover.component.js'
+import BoardBackgroundPopover from '../components/dashboard/boardBackgroundPopover.component.js'
 
 
 export default class DashboardPage {
@@ -41,7 +41,8 @@ export default class DashboardPage {
   }
 
   async verifyBoardBackgroundCorrect() {
-    await $(`//div[@id="trello-root" and contains(@style, "${TEST_DATA.backgroundMountainImageId}")]`)
+    await $(`//div[@id="trello-root" and 
+      contains(@style, "${TEST_DATA.backgroundMountainImageId}")]`)
         .waitForDisplayed()
   }
 }
