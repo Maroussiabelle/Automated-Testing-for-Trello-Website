@@ -4,6 +4,10 @@ import {$} from '@wdio/globals'
 
 const selectors = {
   addAlistBtn: 'button.frrHNIWnTojsww.CSwccJ0PrMROzz.bxgKMAm3lq5BpA.SEj5vUdI3VvxDc',
+  addCardBtn: '//li[@class="bi0h3HALKXjfDq"]//h2[contains(text(), "New list") and @data-testid="list-name"]//ancestor::li[@class="bi0h3HALKXjfDq"]//button[contains(text(), "Add a card")]',
+  boardHeader: 'h1.HKTtBLwDyErB_o',
+  // cardTitleInputField: 'textarea[data-testid="list-card-composer-textarea"]',
+  // addCardBtn: 'button[type="submit"]',
   // addAlistBtn:
   //  'button.frrHNIWnTojsww.CSwccJ0PrMROzz.bxgKMAm3lq5BpA.SEj5vUdI3VvxDc',
 
@@ -11,7 +15,7 @@ const selectors = {
 
 export default class Board {
   get rootEl() {
-    return $('div.WC6fBZ3Z4IYlvP')
+    return $('div#content')
   }
 
 
