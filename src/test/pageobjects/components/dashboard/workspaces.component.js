@@ -5,6 +5,9 @@ const selectors = {
   createNewBoardButton: 'li[data-testid="create-board-tile"]',
   //  createdBoardIcon: 'a.board-tile',
   searchBoardsBar: 'input#search',
+  searchResult:
+      '.j6gdubt3tCF3U1 div[data-testid="persist-recent-search"]' +
+      ' div.css-90uwn0 span',
 }
 
 export default class Workspaces {
