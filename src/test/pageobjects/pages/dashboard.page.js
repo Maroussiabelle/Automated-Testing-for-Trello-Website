@@ -33,7 +33,7 @@ export default class DashboardPage {
     await this.boardBackgroundPopover.item('closePopoverBtn').click()
     await this.createBoardMenu.item('boardTitleInputField').
         setValue(TEST_DATA.boardTitle)
-    await this.createBoardMenu.item('createBoardBtn').click()
+    await browser.keys('Enter')
   }
 
   async getBoardTitle() {
