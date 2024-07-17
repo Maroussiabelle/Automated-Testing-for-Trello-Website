@@ -7,6 +7,7 @@ import Board from '../components/newBoard/board.component.js'
 import ListTitlePopUp from '../components/newBoard/listTitlePopUp.component.js'
 import {TEST_DATA} from '../../data/test.data.js'
 import ListWrapper from '../components/newBoard/listWrapper.component.js'
+import CardComposer from '../components/newBoard/cardComposer.component.js'
 
 
 export default class NewBoardPage {
@@ -17,6 +18,7 @@ export default class NewBoardPage {
     this.board = new Board()
     this.listTitlePopUp = new ListTitlePopUp()
     this.listWrapper = new ListWrapper()
+    this.cardCompopser = new CardComposer()
   }
   async open() {
     await browser.url('https://trello.com/b/JCuRTS0a/new-board')
@@ -27,6 +29,17 @@ export default class NewBoardPage {
     await this.boardSettingsMenu.item('closeBoardBtn').click()
     await this.closeBoardPopover.item('closeBtn').click()
     await this.boardSettingsMenu.item('permanentlyDeleteBoardBtn').click()
+  }
+
+  async addList() {
+    await this.listTitlePopUp.item('listTitleInputField').
+        setValue(TEST_DATA.listTitle)
+    await this.listTitlePopUp.item('addListBtn').click()
+  }
+
+  async getListTitle() {
+    await this.listWrapper.item('displayedListTitle').waitForDisplayed()
+    await this.listWrapper.item('displayedListTitle').getText()
   }
 }
 
