@@ -4,7 +4,8 @@ import {$} from '@wdio/globals'
 
 
 const selectors = {
-  displayedListTitle: 'h2[data-testid="list-name"][role="textbox"]',
+  displayedListTitle:
+      '//h2[contains(text(), "New list") and @data-testid="list-name"]',
   addCardBtn: 'button[data-testid="list-add-card-button"]',
 
 }

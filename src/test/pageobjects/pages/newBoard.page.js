@@ -36,11 +36,6 @@ export default class NewBoardPage {
         setValue(TEST_DATA.listTitle)
     await this.listTitlePopUp.item('addListBtn').click()
   }
-
-  async getListTitle() {
-    await this.listWrapper.item('displayedListTitle').waitForDisplayed()
-    await this.listWrapper.item('displayedListTitle').getText()
-  }
 }
 
 
