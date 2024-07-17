@@ -59,27 +59,21 @@ describe('Trello site functionality tests', () => {
   // })
   //
   it('should create a new list on a board', async () => {
-    if (await newBoardPage.board.item('addAlistBtn').isDisplayed()) {
-      await newBoardPage.board.item('addAlistBtn').click()
-      await newBoardPage.addList()
-    } else {
-      await newBoardPage.listTitlePopUp.item('listTitleInputField').click()
-      await newBoardPage.listTitlePopUp.item('addListBtn').click()
-    }
-    // await newBoardPage.listWrapper.item('displayedListTitle').waitForDisplayed()
-    const displayedListTitle =
-        await newBoardPage.listWrapper.item('displayedListTitle').getText()
-    expect(displayedListTitle).toEqual(TEST_DATA.listTitle)
+    await newBoardPage.addList(TEST_DATA.listTitle)
+    const isListDisplayed =
+        await newBoardPage.listWrapper.displayedListTitle('New list')
+            .waitForDisplayed()
+    expect(isListDisplayed).toBe(true)
   })
 
   // it('should create a new card in a list', async () => {
-  //   await newBoardPage.listWrapper.item('addCardBtn').click()
+  //   await newBoardPage.board.item('addCardBtn').click()
   //   await newBoardPage.cardCompopser.item('cardTitleInputField').
   //       setValue(TEST_DATA.cardTitle)
-  //   await newBoardPage.cardCompopser.item('addCardBtn').click()
+  //   await newBoardPage.cardCompopser.item('addCardSubmitBtn').click()
   //   // await newBoardPage.cardCompopser.item('displayedCard').getText()
-  //   const displayedCardTitle = await newBoardPage.cardCompopser.item('displayedCardTitle').getText()
+  //   const displayedCardTitle =
+  //       await newBoardPage.cardCompopser.item('displayedCardTitle').getText()
   //   expect(displayedCardTitle).toBe(TEST_DATA.cardTitle)
-  // Then a new card should be created and displayed in the list
   // })
 })
