@@ -4,4 +4,5 @@ export const TEST_DATA = {
   boardTitle: 'New board',
   backgroundMountainImageId: 'photo-1719935190609-c075f3dada9d',
   listTitle: 'New list',
+  cardTitle: 'Test card',
 }
