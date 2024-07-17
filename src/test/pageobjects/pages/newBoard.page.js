@@ -31,10 +31,12 @@ export default class NewBoardPage {
     await this.boardSettingsMenu.item('permanentlyDeleteBoardBtn').click()
   }
 
-  async addList() {
+  async addList(title) {
+    await this.board.item('boardHeader').click()
+    await this.board.item('addAlistBtn').click()
     await this.listTitlePopUp.item('listTitleInputField').
-        setValue(TEST_DATA.listTitle)
-    await this.listTitlePopUp.item('addListBtn').click()
+        setValue(title)
+    await browser.keys('Enter')
   }
 }
 
