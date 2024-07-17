@@ -16,5 +16,8 @@
   "scripts": {
     "lint": "eslint -c src/configs/eslint.config.js ./src --fix",
     "wdio": "wdio run src/configs/wdio.conf.js"
+  },
+  "dependencies": {
+    "chai": "^5.1.1"
   }
 }
