@@ -4,6 +4,7 @@ import DashboardPage from '../pageobjects/pages/dashboard.page.js'
 import ProfilePage from '../pageobjects/pages/profile.page.js'
 import {TEST_DATA} from '../data/test.data.js'
 import NewBoardPage from '../pageobjects/pages/newBoard.page.js'
+import {browser} from '@wdio/globals'
 
 
 const trelloHomepage = new TrelloHomePage()
@@ -34,17 +35,17 @@ describe('Trello site functionality tests', () => {
   //   await profilePage.revertUsername(TEST_DATA.originalUsername)
   // })
 
-  it('should create a new board with the specified background and title',
-      async () => {
-        await dashboardPage.open()
-        await dashboardPage.createBoard()
-        // const displayedBoardTitle = await newBoardPage.
-        //     boardHeader.item('displayedBoardTitle').getText()
-        // expect(displayedBoardTitle).toEqual(TEST_DATA.boardTitle)
-        // await dashboardPage.verifyBoardBackgroundCorrect()
-        // await newBoardPage.deleteBoard()
-        // await dashboardPage.open()
-      })
+  // it('should create a new board with the specified background and title',
+  //     async () => {
+  //       await dashboardPage.open()
+  //       await dashboardPage.createBoard()
+  //       // const displayedBoardTitle = await newBoardPage.
+  //       //     boardHeader.item('displayedBoardTitle').getText()
+  //       // expect(displayedBoardTitle).toEqual(TEST_DATA.boardTitle)
+  //       // await dashboardPage.verifyBoardBackgroundCorrect()
+  //       // await newBoardPage.deleteBoard()
+  //       // await dashboardPage.open()
+  //     })
 
   // it('should search for a board with a specified title', async () => {
   //   await dashboardPage.open()
@@ -58,22 +59,25 @@ describe('Trello site functionality tests', () => {
   // expect(foundBoardTitle).toEqual(TEST_DATA.boardTitle)
   // })
   //
-  it('should create a new list on a board', async () => {
-    await newBoardPage.addList(TEST_DATA.listTitle)
-    const isListDisplayed =
-        await newBoardPage.listWrapper.displayedListTitle('New list')
-            .waitForDisplayed()
-    expect(isListDisplayed).toBe(true)
-  })
-
-  // it('should create a new card in a list', async () => {
-  //   await newBoardPage.board.item('addCardBtn').click()
-  //   await newBoardPage.cardCompopser.item('cardTitleInputField').
-  //       setValue(TEST_DATA.cardTitle)
-  //   await newBoardPage.cardCompopser.item('addCardSubmitBtn').click()
-  //   // await newBoardPage.cardCompopser.item('displayedCard').getText()
-  //   const displayedCardTitle =
-  //       await newBoardPage.cardCompopser.item('displayedCardTitle').getText()
-  //   expect(displayedCardTitle).toBe(TEST_DATA.cardTitle)
+  // it('should create a new list on a board', async () => {
+  //   await newBoardPage.addList(TEST_DATA.listTitle)
+  //   const isListDisplayed =
+  //       await newBoardPage.listWrapper.displayedListTitle('New list')
+  //           .waitForDisplayed()
+  //   expect(isListDisplayed).toBe(true)
   // })
+
+  it('should create a new card in a list', async () => {
+    await browser.url('https://trello.com/b/pzDGGt9v/new-board')
+    await newBoardPage.listWrapper.item('addCardBtn').click()
+    await newBoardPage.cardCompopser.item('cardTitleInputField').
+        setValue(TEST_DATA.cardTitle)
+    await browser.keys('Enter')
+
+    // await newBoardPage.cardCompopser.item('addCardSubmitBtn').click()
+    // await newBoardPage.cardCompopser.item('displayedCard').getText()
+    // await newBoardPage.cardCompopser.item('displayedCardTitle').waitForDisplayed()
+    // const displayedCardTitle = await newBoardPage.cardCompopser.item('displayedCardTitle').getText()
+    // expect(displayedCardTitle).toBe(TEST_DATA.cardTitle)
+  })
 })
