@@ -5,13 +5,13 @@ import {$} from '@wdio/globals'
 
 const selectors = {
   cardTitleInputField: 'textarea[data-testid="list-card-composer-textarea"]',
-  addCardBtn: 'button[type="submit"]',
-  displayedCard: 'a.NdQKKfeqJDDdX3',
+  addCardSubmitBtn: 'button[type="submit"]',
+  displayedCard: '//a[@class="NQKKfeqJDDdX3" and contains(text(), "Test card")]',
 }
 
 export default class CardComposer {
   get rootEl() {
-    return $('div.Sb_QqNKeadm2oq')
+    return $('//li[@class="bi0h3HALKXjfDq"]//h2[contains(text(), "New list") and @data-testid="list-name"]//ancestor::li[@class="bi0h3HALKXjfDq"]')
   }
 
 
