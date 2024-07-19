@@ -5,7 +5,6 @@ import BoardHeader from '../components/newBoard/boardHeader.component.js'
 import CloseBoardPopOver from '../components/newBoard/closeBoardPopOver.component.js'
 import Board from '../components/newBoard/board.component.js'
 import ListTitlePopUp from '../components/newBoard/listTitlePopUp.component.js'
-import {TEST_DATA} from '../../data/test.data.js'
 import ListWrapper from '../components/newBoard/listWrapper.component.js'
 import CardComposer from '../components/newBoard/cardComposer.component.js'
 
@@ -21,7 +20,7 @@ export default class NewBoardPage {
     this.cardCompopser = new CardComposer()
   }
   async open() {
-    await browser.url('https://trello.com/b/JCuRTS0a/new-board')
+    await browser.url('https://trello.com/b/cq9d5jJp/new-board')
   }
 
   async deleteBoard() {

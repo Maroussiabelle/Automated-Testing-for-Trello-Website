@@ -12,7 +12,6 @@ export default class Header {
     return $('nav#header')
   }
 
-
   item(param) {
     return this.rootEl.$(selectors[param])
   }
