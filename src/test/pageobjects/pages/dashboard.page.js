@@ -5,6 +5,7 @@ import Workspaces from '../components/dashboard/workspaces.component.js'
 import CreateBoardMenu from '../components/dashboard/createBoardMenu.component.js'
 import {TEST_DATA} from '../../data/test.data.js'
 import BoardBackgroundPopover from '../components/dashboard/boardBackgroundPopover.component.js'
+import SearchDialogWrapper from '../components/dashboard/searchDialogWrapper.component.js'
 
 
 export default class DashboardPage {
@@ -14,6 +15,7 @@ export default class DashboardPage {
     this.workspaces = new Workspaces()
     this.createBoardMenu = new CreateBoardMenu()
     this.boardBackgroundPopover = new BoardBackgroundPopover()
+    this.searchDialogWrapper = new SearchDialogWrapper()
   }
   async open() {
     await browser.url('https://trello.com/u/jstestswdio2/boards')
