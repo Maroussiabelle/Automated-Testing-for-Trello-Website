@@ -42,10 +42,4 @@ export default class DashboardPage {
   async getBoardTitle() {
     return this.workspaces.item('displayedBoardTitle').getText()
   }
-
-  async verifyBoardBackgroundCorrect() {
-    await $(`//div[@id="trello-root" and 
-      contains(@style, "${TEST_DATA.backgroundMountainImageId}")]`)
-        .waitForDisplayed()
-  }
 }

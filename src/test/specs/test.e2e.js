@@ -5,7 +5,7 @@ import ProfilePage from '../pageobjects/pages/profile.page.js'
 import {TEST_DATA} from '../data/test.data.js'
 import NewBoardPage from '../pageobjects/pages/newBoard.page.js'
 import {browser} from '@wdio/globals'
-import LogOutPage from '../pageobjects/pages/logOut.page.js'
+import PreConfiguredBoardPage from '../pageobjects/pages/preConfiguredBoard.page.js'
 
 
 const trelloHomepage = new TrelloHomePage()
@@ -13,6 +13,7 @@ const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 const profilePage = new ProfilePage()
 const newBoardPage = new NewBoardPage()
+const preConfiguredBoardPage = new PreConfiguredBoardPage()
 
 
 describe('Trello site functionality tests', () => {
@@ -39,16 +40,16 @@ describe('Trello site functionality tests', () => {
     await profilePage.revertUsername(TEST_DATA.originalUsername)
   })
 
-  it('should create a new @board with the specified background and title', async () => {
+  it('should create a new board with the specified background and title', async () => {
     await dashboardPage.open()
     await dashboardPage.createBoard()
     const displayedBoardTitle = await newBoardPage.boardHeader.item('displayedBoardTitle').getText()
 
     expect(displayedBoardTitle).toEqual(TEST_DATA.boardTitle)
-    // todo move method to newBoardPage
-    await dashboardPage.verifyBoardBackgroundCorrect()
-
-    // todo delete board
+    // todo move method to newBoardPage - done
+    await newBoardPage.verifyBoardBackgroundCorrect()
+    // todo delete board - done
+    await newBoardPage.deleteBoard()
   })
 
   it('should search for a @board with a specified title', async () => {
@@ -62,28 +63,39 @@ describe('Trello site functionality tests', () => {
     expect(foundBoardTitle).toEqual(TEST_DATA.boardTitle)
   })
 
-  it('should create a new list on a @board', async () => {
-    // todo create list on an existing board
-    await dashboardPage.open()
-    await dashboardPage.createBoard()
-    await newBoardPage.addList('New list')
-    const isListDisplayed = await newBoardPage.listWrapper.displayedListTitle('New list').waitForDisplayed()
+  it('should create a new list on an existing board', async () => {
+    // todo create list on an existing board - done
+    await preConfiguredBoardPage.open()
+    await preConfiguredBoardPage.addList('New list')
+    // const isListDisplayed = await preConfiguredBoardPage.listWrapper.displayedListTitle('New list').waitForDisplayed()
 
-    expect(isListDisplayed).toBe(true)
-    // TODO: add error message
+    // TODO: add error message - done
+    // expect(isListDisplayed, 'Expected the new list to be displayed, but it was not found.').to.be.true
+    try {
+      const isListDisplayed = await newBoardPage.listWrapper.displayedListTitle('New list').waitForDisplayed()
+      if (!isListDisplayed) {
+        throw new Error('Expected the new list to be displayed, but it was not found.')
+      }
+      expect(isListDisplayed).toBe(true)
+    } catch (error) {
+      console.error(error.message)
+      throw error
+    }
+
     // todo delete list
+    // WRITE CORRECT listEditMenuBtn XPATH SELECTOR on listWrapperComponent
   })
 
-  it('should create a new card in a list on a previously created board', async () => {
-    // todo newBoardPage probably should be renamed
-    await newBoardPage.open()
-    await newBoardPage.board.item('boardHeader').click()
-    await newBoardPage.listWrapper.item('addNewCardBtn').click()
-    await newBoardPage.cardCompopser.item('cardTitleInputField').click()
-    await newBoardPage.cardCompopser.item('cardTitleInputField').setValue(TEST_DATA.cardTitle)
-    await newBoardPage.cardCompopser.item('addCardBtn').click()
-    await newBoardPage.cardCompopser.item('displayedCard').waitForExist()
-    // await newBoardPage.deleteBoard()
+  it('should create a new card in a list on an existing board', async () => {
+    // todo newBoardPage probably should be renamed - created separate preconfigured board page
+    await preConfiguredBoardPage.open()
+    await preConfiguredBoardPage.board.item('boardHeader').click()
+    await preConfiguredBoardPage.listWrapper.item('addNewCardBtn').click()
+    await preConfiguredBoardPage.cardComposer.item('cardTitleInputField').click()
+    await preConfiguredBoardPage.cardComposer.item('cardTitleInputField').setValue(TEST_DATA.cardTitle)
+    await preConfiguredBoardPage.cardComposer.item('addCardBtn').click()
+    await preConfiguredBoardPage.cardComposer.item('displayedCard').waitForExist()
+
     // todo delete card, not a board
   })
 })
