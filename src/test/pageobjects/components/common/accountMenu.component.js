@@ -5,9 +5,7 @@ const selectors = {
   switchAccountButton: '[data-testid="switch-accounts-link"]',
   manageAccountButton: '[data-testid="manage-account-link"]',
   profileAndVisibilityButton: '//span[text()="Profile and visibility"]',
-  // activityButton: '',
-  // cardsButton: '',
-  // settingsButton: '',
+  logOutButton: '//span[contains(@class, "BmRHtH7FIX0jcL") and contains(text(), "Log out")]',
 }
 
 export default class AccountMenu {

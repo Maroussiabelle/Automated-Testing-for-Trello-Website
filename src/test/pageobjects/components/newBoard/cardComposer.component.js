@@ -6,7 +6,8 @@ import {$} from '@wdio/globals'
 const selectors = {
   cardTitleInputField: 'textarea[data-testid="list-card-composer-textarea"]',
   addCardSubmitBtn: 'button[type="submit"]',
-  displayedCard: '//a[@class="NQKKfeqJDDdX3" and contains(text(), "Test card")]',
+  displayedCard: '//a[@class="NdQKKfeqJDDdX3" and contains(text(), "Test card")]',
+  addCardBtn: 'button.bxgKMAm3lq5BpA.SdamsUKjxSBwGb.SEj5vUdI3VvxDc',
 }
 
 export default class CardComposer {

@@ -4,8 +4,8 @@ import {$} from '@wdio/globals'
 
 
 const selectors = {
-  addCardBtn: '//li[@class="bi0h3HALKXjfDq"]//h2[contains(text(), "New list") and @data-testid="list-name"]//ancestor::li[@class="bi0h3HALKXjfDq"]//button[contains(text(), "Add a card")]',
-
+  addNewCardBtn: '//li[@class="bi0h3HALKXjfDq"]//h2[contains(text(), "New list") and @data-testid="list-name"]' +
+      '//ancestor::li[@class="bi0h3HALKXjfDq"]//button[contains(text(), "Add a card")]',
 }
 
 export default class ListWrapper {

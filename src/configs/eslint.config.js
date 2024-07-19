@@ -20,6 +20,7 @@ export default [
       'semi': ['error', 'never'],
       'func-call-spacing': ['error', 'never'],
       'space-in-parens': ['error', 'never'],
+      'max-len': ['error', {'code': 160}],
     },
   },
   {
