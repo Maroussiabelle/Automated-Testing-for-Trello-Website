@@ -5,4 +5,5 @@ export const TEST_DATA = {
   backgroundMountainImageId: 'photo-1719935190609-c075f3dada9d',
   listTitle: 'New list',
   cardTitle: 'Test card',
+  cardForFilterTest: '123 card for filter test',
 }

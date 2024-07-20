@@ -6,6 +6,7 @@ import {$} from '@wdio/globals'
 const selectors = {
   displayedBoardTitle: 'h1.HKTtBLwDyErB_o',
   menuBtn: 'button.frrHNIWnTojsww.GDunJzzgFqQY_3',
+  filterCardsBtn: 'button[data-testid="filter-popover-button"]',
 }
 
 export default class BoardHeader {

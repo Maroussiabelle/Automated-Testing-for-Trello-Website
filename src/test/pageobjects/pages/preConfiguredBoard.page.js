@@ -7,6 +7,8 @@ import CardComposer from '../components/preConfigured/cardComposer.component.js'
 import ListActionsMenu from '../components/preConfigured/listActionsMenu.component.js'
 import CardDetailWindowComponent from '../components/preConfigured/cardDetailWindow.component.js'
 import {TEST_DATA} from '../../data/test.data.js'
+import BoardHeader from '../components/newBoard/boardHeader.component.js'
+import FilterWindow from '../components/preConfigured/filterWindow.component.js'
 
 export default class PreConfiguredBoardPage {
   constructor() {
@@ -17,6 +19,8 @@ export default class PreConfiguredBoardPage {
     this.cardComposer = new CardComposer()
     this.listActionsMenu = new ListActionsMenu()
     this.cardDetailWindow = new CardDetailWindowComponent()
+    this.boardHeader = new BoardHeader()
+    this.filterWindow = new FilterWindow()
   }
 
   async open() {
