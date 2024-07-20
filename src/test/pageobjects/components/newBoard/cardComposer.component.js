@@ -12,7 +12,7 @@ const selectors = {
 
 export default class CardComposer {
   get rootEl() {
-    return $('//li[@class="bi0h3HALKXjfDq"]//h2[contains(text(), "New list") and @data-testid="list-name"]//ancestor::li[@class="bi0h3HALKXjfDq"]')
+    return $('//li[@class="bi0h3HALKXjfDq"]//h2[contains(text(), "List for cards") and @data-testid="list-name"]//ancestor::li[@class="bi0h3HALKXjfDq"]')
   }
 
 
