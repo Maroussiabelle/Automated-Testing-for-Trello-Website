@@ -1,10 +1,12 @@
 
 import {browser} from '@wdio/globals'
 import Board from '../components/preConfigured/board.component.js'
-import ListTitlePopUp from '../components/newBoard/listTitlePopUp.component.js'
-import ListWrapper from '../components/newBoard/listWrapper.component.js'
-import CardComposer from '../components/newBoard/cardComposer.component.js'
-import ListActionsMenu from '../components/newBoard/listActionsMenu.component.js'
+import ListTitlePopUp from '../components/preConfigured/listTitlePopUp.component.js'
+import ListWrapper from '../components/preConfigured/listWrapper.component.js'
+import CardComposer from '../components/preConfigured/cardComposer.component.js'
+import ListActionsMenu from '../components/preConfigured/listActionsMenu.component.js'
+import CardDetailWindowComponent from '../components/preConfigured/cardDetailWindow.component.js'
+import {TEST_DATA} from '../../data/test.data.js'
 
 export default class PreConfiguredBoardPage {
   constructor() {
@@ -14,6 +16,7 @@ export default class PreConfiguredBoardPage {
     this.newList = new ListWrapper('New list')
     this.cardComposer = new CardComposer()
     this.listActionsMenu = new ListActionsMenu()
+    this.cardDetailWindow = new CardDetailWindowComponent()
   }
 
   async open() {
@@ -34,5 +37,11 @@ export default class PreConfiguredBoardPage {
     // await this.listWrapper.item('listEditMenuBtn').waitForClickable({timeout: 3000})
     await this.newList.item('listEditMenuBtn').click()
     await this.listActionsMenu.item('archiveThisListBtn').click()
+  }
+
+  async deleteCard(cardName) {
+    await this.listForCards.card(cardName).click()
+    await this.cardDetailWindow.item('archiveCardButton').click()
+    await this.cardDetailWindow.item('deleteCardButton').click()
   }
 }

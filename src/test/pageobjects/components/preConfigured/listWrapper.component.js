@@ -1,5 +1,4 @@
 
-
 import {$} from '@wdio/globals'
 
 
@@ -14,10 +13,6 @@ export default class ListWrapper {
     this.listName = listName
   }
 
-  // get rootEl() {
-  //   return $('//h2[contains(text(), "List for cards") and @data-testid="list-name"]//ancestor::li[@class="bi0h3HALKXjfDq"]')
-  // }
-
   get rootEl() {
     return $(`//h2[contains(text(), "${this.listName}") and @data-testid="list-name"]//ancestor::li[@class="bi0h3HALKXjfDq"]`)
   }
@@ -30,5 +25,9 @@ export default class ListWrapper {
   displayedListTitle(listTitle) {
     return this.rootEl.$(`//h2[contains(text(), "${listTitle}") 
       and @data-testid="list-name"]`)
+  }
+
+  card(cardName) {
+    return this.rootEl.$(`//a[@class="NdQKKfeqJDDdX3" and contains(text(), "${cardName}")]`)
   }
 }
