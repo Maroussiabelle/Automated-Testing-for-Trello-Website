@@ -4,14 +4,22 @@ import {$} from '@wdio/globals'
 
 
 const selectors = {
-  addNewCardBtn: '//li[@class="bi0h3HALKXjfDq"]//h2[contains(text(), "New list") and @data-testid="list-name"]' +
-      '//ancestor::li[@class="bi0h3HALKXjfDq"]//button[contains(text(), "Add a card")]',
-  listEditMenuBtn: '//li[@class="bi0h3HALKXjfDq"]//button[@data-testid="list-edit-menu-button"]//span[@data-testid="OverflowMenuHorizontalIcon"]',
+  addNewCardBtn: './/button[contains(text(), "Add a card")]',
+  listEditMenuBtn: './/button[@data-testid="list-edit-menu-button"]',
 }
 
+
 export default class ListWrapper {
+  constructor(listName) {
+    this.listName = listName
+  }
+
+  // get rootEl() {
+  //   return $('//h2[contains(text(), "List for cards") and @data-testid="list-name"]//ancestor::li[@class="bi0h3HALKXjfDq"]')
+  // }
+
   get rootEl() {
-    return $('//h2[contains(text(), "New list") and @data-testid="list-name"]//ancestor::li[@data-list-id="669a9805fee30898dc4549b4"]')
+    return $(`//h2[contains(text(), "${this.listName}") and @data-testid="list-name"]//ancestor::li[@class="bi0h3HALKXjfDq"]`)
   }
 
 
