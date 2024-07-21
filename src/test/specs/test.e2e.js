@@ -6,7 +6,7 @@ import {TEST_DATA} from '../data/test.data.js'
 import NewBoardPage from '../pageobjects/pages/newBoard.page.js'
 import {browser} from '@wdio/globals'
 import PreConfiguredBoardPage from '../pageobjects/pages/preConfiguredBoard.page.js'
-
+import WorkspaceSettingsPage from '../pageobjects/pages/workspaceSettings.page.js'
 
 const trelloHomepage = new TrelloHomePage()
 const loginPage = new LoginPage()
@@ -14,7 +14,7 @@ const dashboardPage = new DashboardPage()
 const profilePage = new ProfilePage()
 const newBoardPage = new NewBoardPage()
 const preConfiguredBoardPage = new PreConfiguredBoardPage()
-
+const workspaceSettingsPage = new WorkspaceSettingsPage()
 
 describe('Trello site functionality tests', () => {
   before('open Trello homepage and login as registered user', async () => {
@@ -89,5 +89,22 @@ describe('Trello site functionality tests', () => {
 
     expect(preConfiguredBoardPage.listForCards.card(TEST_DATA.cardForFilterTest)).toBeDisplayed()
   })
+
+  it('should edit workspace details', async () => {
+    const editedWorkspaceName = 'Edited workspace name'
+    const testWorkspaceDescription = 'added description for test workspace'
+    const originalWorkspaceName = 'Trello Workspace'
+
+    await dashboardPage.open()
+    await dashboardPage.boardSectionHeader.item('settingsBtn').click()
+    await workspaceSettingsPage.updateWorkspaceNameAndDescription(editedWorkspaceName, testWorkspaceDescription)
+
+    const displayedWorkspaceTitle = await workspaceSettingsPage.workspaceHeader.item('workspaceTitle').getText()
+    expect(displayedWorkspaceTitle).toEqual(editedWorkspaceName)
+    const displayedWorkspaceDescription = await workspaceSettingsPage.workspaceHeader.item('workspaceDescription').getText()
+    expect(displayedWorkspaceDescription).toEqual(testWorkspaceDescription)
+    await workspaceSettingsPage.revertChangeofWorkspaceNameAndDescription(originalWorkspaceName)
+  })
 })
+
 
