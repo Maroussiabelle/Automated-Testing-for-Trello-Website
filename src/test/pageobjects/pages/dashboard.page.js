@@ -1,5 +1,5 @@
 import Header from '../components/common/header.component.js'
-import {$, browser} from '@wdio/globals'
+import {browser} from '@wdio/globals'
 import AccountMenu from '../components/common/accountMenu.component.js'
 import Workspaces from '../components/dashboard/workspaces.component.js'
 import CreateBoardMenu from '../components/dashboard/createBoardMenu.component.js'
@@ -39,6 +39,11 @@ export default class DashboardPage {
     await this.createBoardMenu.item('boardTitleInputField').
         setValue(TEST_DATA.boardTitle)
     await browser.keys('Enter')
+  }
+  async searchBoard() {
+    await this.header.item('searchFieldDiv').waitForDisplayed()
+    await this.header.item('searchFieldDiv').click()
+    await this.header.item('searchField').setValue(TEST_DATA.boardTitle)
   }
 
   async getBoardTitle() {

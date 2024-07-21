@@ -7,6 +7,7 @@ import ListActionsMenu from '../components/preConfigured/listActionsMenu.compone
 import CardDetailWindowComponent from '../components/preConfigured/cardDetailWindow.component.js'
 import BoardHeader from '../components/newBoard/boardHeader.component.js'
 import FilterWindow from '../components/preConfigured/filterWindow.component.js'
+import {TEST_DATA} from '../../data/test.data.js'
 
 export default class PreConfiguredBoardPage {
   constructor() {
@@ -41,10 +42,21 @@ export default class PreConfiguredBoardPage {
     await this.listActionsMenu.item('archiveThisListBtn').click()
   }
 
+  async addCard() {
+    await this.listForCards.item('addNewCardBtn').click()
+    await this.cardComposer.item('cardTitleInputField').setValue(TEST_DATA.cardTitle)
+    await this.cardComposer.item('addCardBtn').click()
+  }
   async deleteCard(cardName) {
     await browser.pause(1000)
     await this.listForCards.card(cardName).click()
     await this.cardDetailWindow.item('archiveCardButton').click()
     await this.cardDetailWindow.item('deleteCardButton').click()
+  }
+  async filterCards() {
+    await this.open()
+    await this.boardHeader.item('filterCardsBtn').click()
+    await this.filterWindow.item('keywordInputField').click()
+    await this.filterWindow.item('keywordInputField').setValue('filter')
   }
 }

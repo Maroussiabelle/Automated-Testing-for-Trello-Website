@@ -52,9 +52,7 @@ describe('Trello site functionality tests', () => {
 
   it('should search for a board with a specified title', async () => {
     await dashboardPage.open()
-    await dashboardPage.header.item('searchFieldDiv').waitForDisplayed()
-    await dashboardPage.header.item('searchFieldDiv').click()
-    await dashboardPage.header.item('searchField').setValue(TEST_DATA.boardTitle)
+    await dashboardPage.searchBoard()
     await dashboardPage.searchDialogWrapper.item('searchResult').waitForDisplayed()
     const foundBoardTitle = await dashboardPage.searchDialogWrapper.item('searchResult').getText()
 
@@ -72,9 +70,7 @@ describe('Trello site functionality tests', () => {
 
   it('should create a new card in a list on an existing board', async () => {
     await preConfiguredBoardPage.open()
-    await preConfiguredBoardPage.listForCards.item('addNewCardBtn').click()
-    await preConfiguredBoardPage.cardComposer.item('cardTitleInputField').setValue(TEST_DATA.cardTitle)
-    await preConfiguredBoardPage.cardComposer.item('addCardBtn').click()
+    await preConfiguredBoardPage.addCard()
     const isCardDisplayed = await preConfiguredBoardPage.cardComposer.item('displayedCard').waitForExist()
 
     expect(isCardDisplayed).toBe(true)
@@ -82,10 +78,7 @@ describe('Trello site functionality tests', () => {
   })
 
   it('should filter cards on an existing board', async () => {
-    await preConfiguredBoardPage.open()
-    await preConfiguredBoardPage.boardHeader.item('filterCardsBtn').click()
-    await preConfiguredBoardPage.filterWindow.item('keywordInputField').click()
-    await preConfiguredBoardPage.filterWindow.item('keywordInputField').setValue('filter')
+    await preConfiguredBoardPage.filterCards()
 
     expect(preConfiguredBoardPage.listForCards.card(TEST_DATA.cardForFilterTest)).toBeDisplayed()
   })
