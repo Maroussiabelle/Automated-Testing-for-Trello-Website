@@ -1,6 +1,4 @@
-
-import {$} from '@wdio/globals'
-
+import {$} from '@wdio/globals';
 
 const selectors = {
   seeMoreBackgroundPhotosBtn:
@@ -11,16 +9,14 @@ const selectors = {
   backBtn: 'button.Uz5Itgv85sjPQ_',
   closePopoverBtn:
       'h2[title="Board background"] + button[data-testid="popover-close"]',
-}
+};
 
 export default class BoardBackgroundPopover {
   get rootEl() {
-    return $('section.rX4pAv5sWHFNjp.js-react-root[data-elevation="2"]')
+    return $('section.rX4pAv5sWHFNjp.js-react-root[data-elevation="2"]');
   }
-
 
   item(param) {
-    return this.rootEl.$(selectors[param])
+    return this.rootEl.$(selectors[param]);
   }
 }
-

@@ -6,4 +6,4 @@ export const TEST_DATA = {
   listTitle: 'New list',
   cardTitle: 'Test card',
   cardForFilterTest: '123 card for filter test',
-}
+};

@@ -1,7 +1,6 @@
-import globals from 'globals'
-import pluginJs from '@eslint/js'
-import google from 'eslint-config-google'
-
+import globals from 'globals';
+import pluginJs from '@eslint/js';
+import google from 'eslint-config-google';
 
 export default [
   {
@@ -17,7 +16,8 @@ export default [
       'valid-jsdoc': 'off',
       'require-jsdoc': 'off',
       'default-case': 'error',
-      'semi': ['error', 'never'],
+      'semi': ['error', 'always'],
+      'no-multiple-empty-lines': ['error', {'max': 1, 'maxEOF': 0, 'maxBOF': 0}],
       'func-call-spacing': ['error', 'never'],
       'space-in-parens': ['error', 'never'],
       'max-len': ['error', {'code': 160}],
@@ -26,4 +26,4 @@ export default [
   {
     ignores: ['src/configs/wdio.conf.js'],
   },
-]
+];
