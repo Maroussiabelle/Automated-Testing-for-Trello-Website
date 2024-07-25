@@ -9,7 +9,7 @@ const selectors = {
 
 export default class AccountMenu {
   get rootEl() {
-    return $('div.q2PzD_Dkq1FVX3');
+    return $('div[data-testid="account-menu"]');
   }
 
   item(param) {
