@@ -7,6 +7,10 @@ import NewBoardPage from '../pageobjects/pages/newBoard.page.js';
 import {browser} from '@wdio/globals';
 import PreConfiguredBoardPage from '../pageobjects/pages/preConfiguredBoard.page.js';
 import WorkspaceSettingsPage from '../pageobjects/pages/workspaceSettings.page.js';
+// import {assert} from 'chai';
+// import {expect} from 'chai';
+// import * as chai from 'chai';
+// chai.should();
 
 const trelloHomepage = new TrelloHomePage();
 const loginPage = new LoginPage();
@@ -28,6 +32,7 @@ describe('Trello site functionality tests', () => {
     const currentUrl = await browser.getUrl();
 
     expect(currentUrl).toBe('https://trello.com/u/jstestswdio2/boards');
+    // assert.equal(currentUrl, 'https://trello.com/u/jstestswdio2/boards', 'The current URL should match the expected URL');
   });
 
   it('should update the username in the user userProfile', async () => {

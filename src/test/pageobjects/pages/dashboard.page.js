@@ -7,6 +7,7 @@ import {TEST_DATA} from '../../data/test.data.js';
 import BoardBackgroundPopover from '../components/dashboard/boardBackgroundPopover.component.js';
 import SearchDialogWrapper from '../components/dashboard/searchDialogWrapper.component.js';
 import BoardSectionHeader from '../components/dashboard/boardSectionHeader.component.js';
+import HeaderCreateMenuPopOverComponent from '../components/dashboard/headerCreateMenuPopOver.component.js';
 
 export default class DashboardPage {
   constructor() {
@@ -17,6 +18,7 @@ export default class DashboardPage {
     this.boardBackgroundPopover = new BoardBackgroundPopover();
     this.searchDialogWrapper = new SearchDialogWrapper();
     this.boardSectionHeader = new BoardSectionHeader();
+    this.headerCreateMenuPopOver = new HeaderCreateMenuPopOverComponent();
   }
   async open() {
     await browser.url('https://trello.com/u/jstestswdio2/boards');
@@ -28,7 +30,8 @@ export default class DashboardPage {
   }
 
   async createBoard() {
-    await this.workspaces.item('createNewBoardButton').click();
+    await this.header.item('createButton').click();
+    await this.headerCreateMenuPopOver.item('createNewBoardButton').click();
     await this.createBoardMenu.item('boardBackgroundsBtn').click();
     await this.boardBackgroundPopover.item('seeMoreBackgroundPhotosBtn').click();
     await this.boardBackgroundPopover.

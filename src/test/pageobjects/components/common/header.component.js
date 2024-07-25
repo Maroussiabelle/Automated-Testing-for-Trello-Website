@@ -1,9 +1,10 @@
 import {$} from '@wdio/globals';
 
 const selectors = {
-  accountButton: '#header > div.hQdzCqwE1c7MY1 > div:nth-child(5) > button',
+  accountButton: 'div[data-testid="header-member-menu-avatar"]',
   searchFieldDiv: 'div.QdftuzIZzhGiAU',
   searchField: 'input[data-test-id="search-dialog-input"]',
+  createButton: 'button[data-testid="header-create-menu-button"]',
 };
 
 export default class Header {
