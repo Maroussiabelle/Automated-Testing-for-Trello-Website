@@ -27,7 +27,6 @@ export default class PreConfiguredBoardPage {
   }
 
   async addList(title) {
-    await this.board.item('boardHeader').click();
     await this.board.item('addAlistBtn').click();
     await this.listTitlePopUp.item('listTitleInputField').
         setValue(title);
