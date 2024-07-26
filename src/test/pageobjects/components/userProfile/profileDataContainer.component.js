@@ -2,7 +2,6 @@ import {$} from '@wdio/globals';
 
 const selectors = {
   usernameInputField: 'input#username',
-  bioInputField: 'textarea#bio',
   saveButton: 'button[type="submit"]',
 };
 
