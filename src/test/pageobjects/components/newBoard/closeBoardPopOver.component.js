@@ -1,7 +1,7 @@
 import {$} from '@wdio/globals';
 
 const selectors = {
-  closeBtn: 'input.js-confirm.full.nch-button.nch-button--danger',
+  closeBtn: 'input[data-testid="close-board-confirm-button"]',
 };
 
 export default class CloseBoardPopOver {
