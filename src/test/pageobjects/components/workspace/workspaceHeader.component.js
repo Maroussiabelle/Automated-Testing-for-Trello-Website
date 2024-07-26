@@ -8,7 +8,7 @@ const selectors = {
 
 export default class WorkspaceHeaderComponent {
   get rootEl() {
-    return $('div.KmsqIheILmD3vF');
+    return $('div.js-current-details');
   }
 
   item(param) {
