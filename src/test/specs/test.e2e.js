@@ -4,7 +4,7 @@ import DashboardPage from '../pageobjects/pages/dashboard.page.js';
 import ProfilePage from '../pageobjects/pages/profile.page.js';
 import {TEST_DATA} from '../data/test.data.js';
 import NewBoardPage from '../pageobjects/pages/newBoard.page.js';
-import {browser} from '@wdio/globals';
+import {$, browser} from '@wdio/globals';
 import PreConfiguredBoardPage from '../pageobjects/pages/preConfiguredBoard.page.js';
 import WorkspaceSettingsPage from '../pageobjects/pages/workspaceSettings.page.js';
 // import {assert} from 'chai';
@@ -25,6 +25,17 @@ describe('Trello site functionality tests', () => {
     await trelloHomepage.open();
     await trelloHomepage.loginBtn.click();
     await loginPage.login(process.env.TRELLO_EMAIL, process.env.PASSWORD);
+    async function dismiss2FAPrompt() {
+      const dismissButton = await $('button[id="mfa-promote-dismiss"]');
+      try {
+        await dismissButton.waitForDisplayed({timeout: 5000});
+        console.log('2FA prompt detected. Clicking on dismiss button.');
+        await dismissButton.click();
+      } catch (error) {
+        console.log('No 2FA prompt detected or element not found within the timeout. Continuing with the test.');
+      }
+    }
+    await dismiss2FAPrompt();
     await dashboardPage.header.item('accountButton').waitForDisplayed();
   });
 
@@ -48,7 +59,7 @@ describe('Trello site functionality tests', () => {
     await dashboardPage.open();
     await dashboardPage.createBoard();
     const displayedBoardTitle = await newBoardPage.boardHeader.item('displayedBoardTitle').getText();
-
+    // const displayedBoardTitle = await dashboardPage.getBoardTitle();
     expect(displayedBoardTitle).toEqual(TEST_DATA.boardTitle);
     await newBoardPage.verifyBoardBackgroundCorrect();
     await newBoardPage.deleteBoard();
