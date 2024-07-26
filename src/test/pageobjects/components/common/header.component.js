@@ -2,8 +2,8 @@ import {$} from '@wdio/globals';
 
 const selectors = {
   accountButton: 'div[data-testid="header-member-menu-avatar"]',
-  searchFieldDiv: 'div.QdftuzIZzhGiAU',
   searchField: 'input[data-test-id="search-dialog-input"]',
+  searchFieldSkeleton: 'input[data-testid="cross-product-search-input-skeleton"]',
   createButton: 'button[data-testid="header-create-menu-button"]',
 };
 

@@ -43,12 +43,7 @@ export default class DashboardPage {
     await browser.keys('Enter');
   }
   async searchBoard() {
-    await this.header.item('searchFieldDiv').waitForDisplayed();
-    await this.header.item('searchFieldDiv').click();
+    await this.header.item('searchFieldSkeleton').click();
     await this.header.item('searchField').setValue(TEST_DATA.boardTitle);
-  }
-
-  async getBoardTitle() {
-    return this.workspaces.item('displayedBoardTitle').getText();
   }
 }
