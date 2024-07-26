@@ -2,9 +2,9 @@ import {$} from '@wdio/globals';
 
 const selectors = {
 
-  boardBackgroundsBtn: 'span.nch-icon.A3PtEe1rGIm_yL.neoUEAwI0GETBQ.LCBkZyEuShKn0r',
+  boardBackgroundsBtn: 'span[data-testid="OverflowMenuHorizontalIcon"]',
   boardTitleInputField:
-      'input.nch-textfield__input.lsOhPsHuxEMYEb.lsOhPsHuxEMYEb.VkPAAkbpkKnPst',
+      'input[data-testid="create-board-title-input"]',
   createBoardBtn: 'button[data-testid="create-board-submit-button"]',
 };
 
