@@ -40,7 +40,6 @@ describe('Trello site functionality tests', () => {
   it('should navigate to user boards page after login', async () => {
     const currentUrl = await browser.getUrl();
 
-    expect(currentUrl).toBe('https://trello.com/u/jstestswdio2/boards');
     assert.equal(currentUrl, 'https://trello.com/u/jstestswdio2/boards', 'The current URL should match the expected URL');
   });
 
