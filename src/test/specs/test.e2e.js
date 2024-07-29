@@ -30,7 +30,8 @@ describe('Trello site functionality tests', () => {
       await dashboardPage.header.item('accountButton').waitForDisplayed();
     } catch (e) {
       const dismissButton = $('button[id="mfa-promote-dismiss"]');
-      if (await dismissButton.waitForDisplayed()) {
+      await browser.debug();
+      if (await dismissButton.isDisplayed()) {
         await dismissButton.click();
       } else {
         throw e;
@@ -48,9 +49,10 @@ describe('Trello site functionality tests', () => {
   it('should update the username in the user userProfile', async () => {
     await dashboardPage.openProfileAndVisibilitySettings();
     await profilePage.updateUsername(TEST_DATA.newUsername);
-    const updatedUsername = await profilePage.getUsername();
+    const elementsContainingAt = await profilePage.profileContent.rootEl.$$(`.//span[contains(text(), '@')]`);
 
-    expect(updatedUsername).toEqual('@jstestswdio2_updated');
+    expect(await elementsContainingAt.map((e) => e.getText())).toContain(`@${TEST_DATA.newUsername}`);
+
     await profilePage.revertUsername(TEST_DATA.originalUsername);
   });
 

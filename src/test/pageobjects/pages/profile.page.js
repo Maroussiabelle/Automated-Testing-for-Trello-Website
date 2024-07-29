@@ -2,23 +2,18 @@ import Header from '../components/common/header.component.js';
 import {browser} from '@wdio/globals';
 import ProfileDataContainerComponent
   from '../components/userProfile/profileDataContainer.component.js';
-import HeaderMemberDetail
-  from '../components/userProfile/headerMemberDetail.component.js';
 import FlagGroup from '../components/userProfile/flagGroup.component.js';
+import ProfileContent from '../components/userProfile/profileContent.component.js';
 
 export default class ProfilePage {
   constructor() {
     this.header = new Header();
     this.profileDataContainer = new ProfileDataContainerComponent();
-    this.headerMemberDetail = new HeaderMemberDetail();
     this.flagGroup = new FlagGroup();
+    this.profileContent = new ProfileContent();
   }
   async open() {
     await browser.url('https://trello.com/u/jstestswdio2');
-  }
-
-  async getUsername() {
-    return await this.headerMemberDetail.item('username').getText();
   }
 
   async updateUsername(newUsername) {
