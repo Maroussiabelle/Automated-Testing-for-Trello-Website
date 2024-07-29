@@ -46,27 +46,27 @@ describe('Trello site functionality tests', () => {
     assert.equal(currentUrl, 'https://trello.com/u/jstestswdio2/boards', 'The current URL should match the expected URL');
   });
 
-  // it('should update the username in the user userProfile', async () => {
-  //   await dashboardPage.openProfileAndVisibilitySettings();
-  //   await profilePage.updateUsername(TEST_DATA.newUsername);
-  //   const elementsContainingAt = await profilePage.profileContent.rootEl.$$(`.//span[contains(text(), '@')]`);
-  //
-  //   expect(await elementsContainingAt.map((e) => e.getText())).toContain(`@${TEST_DATA.newUsername}`);
-  //
-  //   await profilePage.revertUsername(TEST_DATA.originalUsername);
-  // });
-  //
-  // it('should create a new board with the specified background and title', async () => {
-  //   await dashboardPage.open();
-  //   const backgroundId = await dashboardPage.createBoardAndGetBackgroundId();
-  //   const displayedBoardTitle = await newBoardPage.boardHeader.item('displayedBoardTitle').getText();
-  //
-  //   expect(displayedBoardTitle).toEqual(TEST_DATA.boardTitle);
-  //   await newBoardPage.verifyBoardBackgroundCorrect(backgroundId);
-  //
-  //   await newBoardPage.deleteBoard();
-  // });
-  //
+  it('should update the username in the user userProfile', async () => {
+    await dashboardPage.openProfileAndVisibilitySettings();
+    await profilePage.updateUsername(TEST_DATA.newUsername);
+    const elementsContainingAt = await profilePage.profileContent.rootEl.$$(`.//span[contains(text(), '@')]`);
+
+    expect(await elementsContainingAt.map((e) => e.getText())).contain(`@${TEST_DATA.newUsername}`);
+
+    await profilePage.revertUsername(TEST_DATA.originalUsername);
+  });
+
+  it('should create a new board with the specified background and title', async () => {
+    await dashboardPage.open();
+    const backgroundId = await dashboardPage.createBoardAndGetBackgroundId();
+    const displayedBoardTitle = await newBoardPage.boardHeader.item('displayedBoardTitle').getText();
+
+    expect(displayedBoardTitle).equal(TEST_DATA.boardTitle);
+    await newBoardPage.verifyBoardBackgroundCorrect(backgroundId);
+
+    await newBoardPage.deleteBoard();
+  });
+
   // it('should search for a board with a specified title', async () => {
   //   await dashboardPage.open();
   //   await dashboardPage.searchBoard();
