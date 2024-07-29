@@ -2,7 +2,7 @@ import {$} from '@wdio/globals';
 import {TEST_DATA} from '../../../data/test.data.js';
 
 const selectors = {
-  searchResult: `//div[@data-testid="trello-hover-preview-popper-container"]//span[text()="${TEST_DATA.boardTitle}"]`,
+  searchResult: `//div[@data-testid="trello-hover-preview-popper-container"]//span[text()="${TEST_DATA.boardForSearch}"]`,
 
 };
 

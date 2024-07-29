@@ -36,6 +36,6 @@ export default class DashboardPage {
 
   async searchBoard() {
     await this.header.item('searchFieldSkeleton').click();
-    await this.header.item('searchField').setValue(TEST_DATA.boardTitle);
+    await this.header.item('searchField').setValue(TEST_DATA.boardForSearch);
   }
 }
