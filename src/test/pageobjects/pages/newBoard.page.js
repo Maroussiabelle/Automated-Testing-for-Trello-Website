@@ -1,7 +1,7 @@
 import BoardSettingsMenu from '../components/newBoard/boardSettingsMenu.component.js';
 import BoardHeader from '../components/newBoard/boardHeader.component.js';
 import CloseBoardPopOver from '../components/newBoard/closeBoardPopOver.component.js';
-import {TEST_DATA} from '../../data/test.data.js';
+import {$} from '@wdio/globals';
 
 export default class NewBoardPage {
   constructor() {
@@ -17,9 +17,7 @@ export default class NewBoardPage {
     await this.boardSettingsMenu.item('permanentlyDeleteBoardBtn').click();
   }
 
-  async verifyBoardBackgroundCorrect() {
-    await $(`//div[@id="trello-root" and 
-      contains(@style, "${TEST_DATA.backgroundMountainImageId}")]`)
-        .waitForDisplayed();
+  async verifyBoardBackgroundCorrect(backgroundId) {
+    await $(`//div[@id="trello-root" and contains(@style, "${backgroundId}")]`).waitForDisplayed();
   }
 }
