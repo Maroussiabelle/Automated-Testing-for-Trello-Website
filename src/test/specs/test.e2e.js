@@ -108,9 +108,10 @@ describe('Trello site functionality tests', () => {
     await dashboardPage.boardSectionHeader.item('settingsBtn').click();
     await workspaceSettingsPage.updateWorkspaceNameAndDescription(editedWorkspaceName, testWorkspaceDescription);
 
-    const displayedWorkspaceTitle = await workspaceSettingsPage.workspaceHeader.item('workspaceTitle').getText();
+    const displayedWorkspaceTitle = await workspaceSettingsPage.workspaceSideMenu.item('displayedWorkspaceTitle').getText();
     expect(displayedWorkspaceTitle).toEqual(editedWorkspaceName);
-    const displayedWorkspaceDescription = await workspaceSettingsPage.workspaceHeader.item('workspaceDescription').getText();
+
+    const displayedWorkspaceDescription = await workspaceSettingsPage.workspaceDetails.item('description').getText();
     expect(displayedWorkspaceDescription).toEqual(testWorkspaceDescription);
     await workspaceSettingsPage.revertChangeofWorkspaceNameAndDescription(originalWorkspaceName);
   });
