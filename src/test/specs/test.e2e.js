@@ -7,7 +7,8 @@ import NewBoardPage from '../pageobjects/pages/newBoard.page.js';
 import {$, browser} from '@wdio/globals';
 import PreConfiguredBoardPage from '../pageobjects/pages/preConfiguredBoard.page.js';
 import WorkspaceSettingsPage from '../pageobjects/pages/workspaceSettings.page.js';
-import {assert, expect as chaiExpect} from 'chai';
+import {assert, expect as chaiExpect, should} from 'chai';
+should();
 
 const trelloHomepage = new TrelloHomePage();
 const loginPage = new LoginPage();
@@ -39,16 +40,16 @@ describe('Trello site functionality tests', () => {
   it('should navigate to user boards page after login', async () => {
     const currentUrl = await browser.getUrl();
 
-    // expect(currentUrl).toBe('https://trello.com/u/jstestswdio2/boards');
+    expect(currentUrl).toBe('https://trello.com/u/jstestswdio2/boards');
     assert.equal(currentUrl, 'https://trello.com/u/jstestswdio2/boards', 'The current URL should match the expected URL');
   });
 
   it('should update the username in the user userProfile', async () => {
     await dashboardPage.openProfileAndVisibilitySettings();
     await profilePage.updateUsername(TEST_DATA.newUsername);
-    const elementsContainingAt = await profilePage.profileContent.rootEl.$$(`.//span[contains(text(), '@')]`);
+    const displayedUserName = await profilePage.profileContent.item('displayedUsername').waitForDisplayed();
 
-    chaiExpect(await elementsContainingAt.map((e) => e.getText())).contain(`@${TEST_DATA.newUsername}`);
+    chaiExpect(displayedUserName).to.be.true;
 
     await profilePage.revertUsername(TEST_DATA.originalUsername);
   });
@@ -70,7 +71,7 @@ describe('Trello site functionality tests', () => {
     await dashboardPage.searchDialogWrapper.item('searchResult').waitForDisplayed();
     const isBoardFound = await dashboardPage.searchDialogWrapper.item('searchResult').isDisplayed();
 
-    expect(isBoardFound).toBe(true);
+    isBoardFound.should.be.true;
   });
 
   it('should create a new list on an existing board', async () => {
@@ -98,19 +99,14 @@ describe('Trello site functionality tests', () => {
   });
 
   it('should edit workspace details', async () => {
-    const editedWorkspaceName = 'Edited workspace name';
-    const testWorkspaceDescription = 'added description for test workspace';
-    const originalWorkspaceName = 'Trello Workspace';
-
     await dashboardPage.open();
     await dashboardPage.boardSectionHeader.item('settingsBtn').click();
-    await workspaceSettingsPage.updateWorkspaceNameAndDescription(editedWorkspaceName, testWorkspaceDescription);
+    await workspaceSettingsPage.updateWorkspaceNameAndDescription(TEST_DATA.editedWorkspaceName, TEST_DATA.testWorkspaceDescription);
 
-    const displayedWorkspaceTitle = await workspaceSettingsPage.workspaceSideMenu.item('displayedWorkspaceTitle').getText();
-    expect(displayedWorkspaceTitle).toEqual(editedWorkspaceName);
+    (await workspaceSettingsPage.workspaceSideMenu.item('editedWorkspaceTitle').waitForDisplayed()).should.be.true;
 
-    const displayedWorkspaceDescription = await workspaceSettingsPage.workspaceDetails.item('description').getText();
-    expect(displayedWorkspaceDescription).toEqual(testWorkspaceDescription);
-    await workspaceSettingsPage.revertChangeofWorkspaceNameAndDescription(originalWorkspaceName);
+    (await workspaceSettingsPage.workspaceDetails.item('workspaceDescription').waitForDisplayed()).should.be.true;
+
+    await workspaceSettingsPage.revertChangeofWorkspaceNameAndDescription(TEST_DATA.originalWorkspaceName);
   });
 });

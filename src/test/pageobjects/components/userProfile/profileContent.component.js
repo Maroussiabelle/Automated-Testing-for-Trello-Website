@@ -1,6 +1,8 @@
 import {$} from '@wdio/globals';
+import {TEST_DATA} from '../../../data/test.data.js';
 
 const selectors = {
+  displayedUsername: `span*=${TEST_DATA.newUsername}`,
 
 };
 

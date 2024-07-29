@@ -6,4 +6,8 @@ export const TEST_DATA = {
   listTitle: 'New list',
   cardTitle: 'Test card',
   cardForFilterTest: '123 card for filter test',
+  originalWorkspaceName: 'Trello Workspace',
+  editedWorkspaceName: 'Edited workspace name',
+  testWorkspaceDescription: 'added description for test workspace',
+
 };
