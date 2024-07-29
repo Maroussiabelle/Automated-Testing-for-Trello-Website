@@ -26,7 +26,7 @@ export default class DashboardPage {
   async createBoardAndGetBackgroundId() {
     await this.header.item('createButton').click();
     await this.headerCreateMenuPopOver.item('createNewBoardButton').click();
-    const backgroundImage = await $('button:has(span[data-testid="CheckIcon"])').getCSSProperty('background-image');
+    const backgroundImage = await this.headerCreateMenuPopOver.item('boardBackgroundImage').getCSSProperty('background-image');
     const url = new URL(backgroundImage.value.slice(5, -2));
     const backgroundId = url.pathname.slice(1);
     await this.headerCreateMenuPopOver.item('boardTitleInputField').setValue(TEST_DATA.boardTitle);

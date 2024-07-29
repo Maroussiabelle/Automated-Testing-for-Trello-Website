@@ -5,6 +5,7 @@ const selectors = {
   boardTitleInputField:
       'input[data-testid="create-board-title-input"]',
   createBoardBtn: 'button[data-testid="create-board-submit-button"]',
+  boardBackgroundImage: 'button:has(span[data-testid="CheckIcon"])',
 };
 
 export default class HeaderCreateMenuPopOverComponent {
