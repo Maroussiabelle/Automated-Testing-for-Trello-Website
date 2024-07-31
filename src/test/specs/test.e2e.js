@@ -46,9 +46,9 @@ describe('Trello site functionality tests', () => {
   it('should update the username in the user userProfile', async () => {
     await dashboardPage.openProfileAndVisibilitySettings();
     await profilePage.updateUsername(TEST_DATA.newUsername);
-    const displayedUserName = await profilePage.profileContent.item('displayedUsername').waitForDisplayed();
+    const isNewUserNameDisplayed = await profilePage.profileContent.displayedUserName(TEST_DATA.newUsername).isDisplayed();
 
-    chaiExpect(displayedUserName).to.be.true;
+    chaiExpect(isNewUserNameDisplayed).to.be.true;
 
     await profilePage.revertUsername(TEST_DATA.originalUsername);
   });
@@ -66,28 +66,28 @@ describe('Trello site functionality tests', () => {
 
   it('should search for a board with a specified title', async () => {
     await dashboardPage.open();
-    await dashboardPage.searchBoard();
-    await dashboardPage.searchDialogWrapper.item('searchResult').waitForDisplayed();
-    const isBoardFound = await dashboardPage.searchDialogWrapper.item('searchResult').isDisplayed();
+    await dashboardPage.performBoardSearch();
+    await dashboardPage.searchDialogWrapper.waitForSearchResult(TEST_DATA.boardForSearch, 5000);
+    const isBoardDisplayed = await dashboardPage.searchDialogWrapper.isSearchResultDisplayed(TEST_DATA.boardForSearch);
 
-    isBoardFound.should.be.true;
+    expect(isBoardDisplayed).toBe(true);
   });
 
   it('should create a new list on an existing board', async () => {
     await preConfiguredBoardPage.open();
     await preConfiguredBoardPage.addList('New list');
-    const isListDisplayed = await preConfiguredBoardPage.newList.displayedListTitle('New list').waitForExist();
+    await preConfiguredBoardPage.newList.displayedListTitle('New list').waitForDisplayed();
 
-    expect(isListDisplayed).toBe(true);
     await preConfiguredBoardPage.deleteList();
   });
 
   it('should create a new card in a list on an existing board', async () => {
     await preConfiguredBoardPage.open();
     await preConfiguredBoardPage.addCard();
-    const isCardDisplayed = await preConfiguredBoardPage.cardComposer.item('displayedCard').waitForExist();
 
+    const isCardDisplayed = await preConfiguredBoardPage.cardComposer.isCardDisplayed(TEST_DATA.cardTitle);
     expect(isCardDisplayed).toBe(true);
+
     await preConfiguredBoardPage.deleteCard(TEST_DATA.cardTitle);
   });
 
@@ -102,9 +102,9 @@ describe('Trello site functionality tests', () => {
     await dashboardPage.boardSectionHeader.item('settingsBtn').click();
     await workspaceSettingsPage.updateWorkspaceNameAndDescription(TEST_DATA.editedWorkspaceName, TEST_DATA.testWorkspaceDescription);
 
-    (await workspaceSettingsPage.workspaceSideMenu.item('editedWorkspaceTitle').waitForDisplayed()).should.be.true;
+    await workspaceSettingsPage.workspaceSideMenu.item('editedWorkspaceTitle').waitForDisplayed();
 
-    (await workspaceSettingsPage.workspaceDetails.item('workspaceDescription').waitForDisplayed()).should.be.true;
+    await workspaceSettingsPage.workspaceDetails.item('workspaceDescription').waitForDisplayed();
 
     await workspaceSettingsPage.revertChangeofWorkspaceNameAndDescription(TEST_DATA.originalWorkspaceName);
   });
