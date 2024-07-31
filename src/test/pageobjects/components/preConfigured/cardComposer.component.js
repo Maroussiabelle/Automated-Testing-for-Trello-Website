@@ -3,7 +3,6 @@ import {$} from '@wdio/globals';
 const selectors = {
   cardTitleInputField: 'textarea[data-testid="list-card-composer-textarea"]',
   addCardSubmitBtn: 'button[type="submit"]',
-  displayedCard: '//a[@data-testid="card-name" and contains(text(), "Test card")]',
   addCardBtn: 'button[data-testid="list-card-composer-add-card-button"]',
 };
 
@@ -14,5 +13,19 @@ export default class CardComposer {
 
   item(param) {
     return this.rootEl.$(selectors[param]);
+  }
+
+  getDisplayedCardSelector(cardTitle) {
+    return `//a[@data-testid="card-name" and contains(text(), "${cardTitle}")]`;
+  }
+
+  getDisplayedCard(cardTitle) {
+    const selector = this.getDisplayedCardSelector(cardTitle);
+    return this.rootEl.$(selector);
+  }
+
+  async isCardDisplayed(cardTitle) {
+    const cardElement = this.getDisplayedCard(cardTitle);
+    return await cardElement.isDisplayed();
   }
 }
