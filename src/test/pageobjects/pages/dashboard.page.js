@@ -1,5 +1,5 @@
 import Header from '../components/common/header.component.js';
-import {$, browser} from '@wdio/globals';
+import {browser} from '@wdio/globals';
 import AccountMenu from '../components/common/accountMenu.component.js';
 import {TEST_DATA} from '../../data/test.data.js';
 import SearchDialogWrapper from '../components/dashboard/searchDialogWrapper.component.js';
@@ -34,7 +34,7 @@ export default class DashboardPage {
     return backgroundId;
   }
 
-  async searchBoard() {
+  async performBoardSearch() {
     await this.header.item('searchFieldSkeleton').click();
     await this.header.item('searchField').setValue(TEST_DATA.boardForSearch);
   }
