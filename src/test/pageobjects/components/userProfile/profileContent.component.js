@@ -1,12 +1,9 @@
-import {$} from '@wdio/globals';
+import BaseComponent from '../common/base.component.js';
 
-export default class ProfileContent {
+export default class ProfileContent extends BaseComponent {
   constructor(userName) {
+    super('div#content');
     this.userName = userName;
-  }
-
-  get rootEl() {
-    return $('div#content');
   }
 
   displayedUserName(userName) {

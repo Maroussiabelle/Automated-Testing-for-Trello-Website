@@ -1,16 +1,12 @@
-import {$} from '@wdio/globals';
+import BaseComponent from '../common/base.component.js';
 
 const selectors = {
   archiveCardButton: 'a[data-testid="card-back-archive-button"]',
   deleteCardButton: 'a[data-testid="card-back-delete-card-button"]',
 };
 
-export default class CardDetailWindow {
-  get rootEl() {
-    return $('div.card-detail-window');
-  }
-
-  item(param) {
-    return this.rootEl.$(selectors[param]);
+export default class CardDetailWindow extends BaseComponent {
+  constructor() {
+    super('div.card-detail-window', selectors);
   }
 }

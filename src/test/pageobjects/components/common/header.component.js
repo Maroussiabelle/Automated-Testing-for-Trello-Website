@@ -1,4 +1,4 @@
-import {$} from '@wdio/globals';
+import BaseComponent from './base.component.js';
 
 const selectors = {
   accountButton: 'div[data-testid="header-member-menu-avatar"]',
@@ -7,12 +7,8 @@ const selectors = {
   createButton: 'button[data-testid="header-create-menu-button"]',
 };
 
-export default class Header {
-  get rootEl() {
-    return $('nav[data-testid="authenticated-header"]');
-  }
-
-  item(param) {
-    return this.rootEl.$(selectors[param]);
+export default class Header extends BaseComponent {
+  constructor() {
+    super('nav[data-testid="authenticated-header"]', selectors);
   }
 }

@@ -1,15 +1,11 @@
-import {$} from '@wdio/globals';
+import BaseComponent from '../common/base.component.js';
 
 const selectors = {
   keywordInputField: 'input[aria-placeholder="Enter a keyword…"]',
 };
 
-export default class FilterWindow {
-  get rootEl() {
-    return $('div.q2PzD_Dkq1FVX3.pt-0');
-  }
-
-  item(param) {
-    return this.rootEl.$(selectors[param]);
+export default class FilterWindow extends BaseComponent {
+  constructor() {
+    super('div.q2PzD_Dkq1FVX3.pt-0', selectors);
   }
 }

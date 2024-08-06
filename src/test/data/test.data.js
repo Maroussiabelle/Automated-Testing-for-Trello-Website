@@ -9,5 +9,5 @@ export const TEST_DATA = {
   originalWorkspaceName: 'Trello Workspace',
   editedWorkspaceName: 'Edited workspace name',
   testWorkspaceDescription: 'added description for test workspace',
-
+  preConfiguredBoardUrl: '/b/cq9d5jJp/new-board',
 };

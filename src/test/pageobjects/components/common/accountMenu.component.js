@@ -1,4 +1,4 @@
-import {$} from '@wdio/globals';
+import BaseComponent from './base.component.js';
 
 const selectors = {
   switchAccountButton: '[data-testid="switch-accounts-link"]',
@@ -6,12 +6,8 @@ const selectors = {
   profileAndVisibilityButton: '//span[text()="Profile and visibility"]',
 };
 
-export default class AccountMenu {
-  get rootEl() {
-    return $('div[data-testid="account-menu"]');
-  }
-
-  item(param) {
-    return this.rootEl.$(selectors[param]);
+export default class AccountMenu extends BaseComponent {
+  constructor() {
+    super('div[data-testid="account-menu"]', selectors);
   }
 }

@@ -2,23 +2,21 @@
   "name": "wdio-hometask",
   "type": "module",
   "devDependencies": {
-    "chai": "^5.1.1",
     "@eslint/js": "^9.6.0",
     "@wdio/allure-reporter": "^8.39.0",
     "@wdio/cli": "^8.39.1",
     "@wdio/local-runner": "^8.39.1",
     "@wdio/mocha-framework": "^8.39.0",
     "@wdio/spec-reporter": "^8.39.0",
+    "chai": "^5.1.1",
+    "dotenv": "^16.4.5",
     "eslint": "^9.6.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-mocha": "^10.4.3",
     "globals": "^15.8.0"
   },
   "scripts": {
-    "lint": "eslint -c src/configs/eslint.config.js ./src --fix",
+    "lint": "eslint -c eslint.config.js ./src --fix",
     "wdio": "wdio run src/configs/wdio.conf.js"
-  },
-  "dependencies": {
-
   }
 }
