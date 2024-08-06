@@ -1,15 +1,11 @@
-import {$} from '@wdio/globals';
+import BaseComponent from '../common/base.component.js';
 
 const selectors = {
   archiveThisListBtn: 'button[data-testid="list-actions-archive-list-button"]',
 };
 
-export default class ListActionsMenu {
-  get rootEl() {
-    return $('section[data-testid="list-actions-popover"]');
-  }
-
-  item(param) {
-    return this.rootEl.$(selectors[param]);
+export default class ListActionsMenu extends BaseComponent {
+  constructor() {
+    super('section[data-testid="list-actions-popover"]', selectors);
   }
 }

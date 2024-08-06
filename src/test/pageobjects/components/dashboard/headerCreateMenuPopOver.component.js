@@ -1,4 +1,4 @@
-import {$} from '@wdio/globals';
+import BaseComponent from '../common/base.component.js';
 
 const selectors = {
   createNewBoardButton: 'button[data-testid="header-create-board-button"]',
@@ -8,12 +8,8 @@ const selectors = {
   boardBackgroundImage: 'button:has(span[data-testid="CheckIcon"])',
 };
 
-export default class HeaderCreateMenuPopOverComponent {
-  get rootEl() {
-    return $('section[data-testid="header-create-menu-popover"]');
-  }
-
-  item(param) {
-    return this.rootEl.$(selectors[param]);
+export default class HeaderCreateMenuPopOverComponent extends BaseComponent {
+  constructor() {
+    super('section[data-testid="header-create-menu-popover"]', selectors);
   }
 }

@@ -1,13 +1,12 @@
-import {$, browser} from '@wdio/globals';
+import {$} from '@wdio/globals';
+import BasePage from './base.page.js';
 
-// getTrelloForFreeButton: '.kTwZBr.lhSFdZ',
-
-export default class TrelloHomePage {
-  async open() {
-    await browser.url('https://trello.com/');
+export default class TrelloHomePage extends BasePage {
+  constructor() {
+    super('/');
   }
 
   get loginBtn() {
-    return $('a[data-uuid="MJFtCCgVhXrVl7v9HA7EH_login"]');
+    return $('a[data-uuid$="login"]');
   }
 }

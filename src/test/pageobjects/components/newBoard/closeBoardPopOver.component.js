@@ -1,15 +1,11 @@
-import {$} from '@wdio/globals';
+import BaseComponent from '../common/base.component.js';
 
 const selectors = {
   closeBtn: 'input[data-testid="close-board-confirm-button"]',
 };
 
-export default class CloseBoardPopOver {
-  get rootEl() {
-    return $('div.pop-over.is-shown');
-  }
-
-  item(param) {
-    return this.rootEl.$(selectors[param]);
+export default class CloseBoardPopOver extends BaseComponent {
+  constructor() {
+    super('div.pop-over.is-shown', selectors);
   }
 }

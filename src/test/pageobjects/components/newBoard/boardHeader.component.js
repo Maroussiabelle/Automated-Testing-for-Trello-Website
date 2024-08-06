@@ -1,4 +1,4 @@
-import {$} from '@wdio/globals';
+import BaseComponent from '../common/base.component.js';
 
 const selectors = {
   displayedBoardTitle: 'h1[data-testid="board-name-display"]',
@@ -6,12 +6,8 @@ const selectors = {
   filterCardsBtn: 'button[data-testid="filter-popover-button"]',
 };
 
-export default class BoardHeader {
-  get rootEl() {
-    return $('div.board-header.u-clearfix.js-board-header');
-  }
-
-  item(param) {
-    return this.rootEl.$(selectors[param]);
+export default class BoardHeader extends BaseComponent {
+  constructor() {
+    super('div.board-header.u-clearfix.js-board-header', selectors);
   }
 }

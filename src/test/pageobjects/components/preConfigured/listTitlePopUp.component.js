@@ -1,4 +1,4 @@
-import {$} from '@wdio/globals';
+import BaseComponent from '../common/base.component.js';
 
 const selectors = {
   listTitleInputField: 'textarea[data-testid="list-name-textarea"]',
@@ -6,12 +6,8 @@ const selectors = {
 
 };
 
-export default class ListTitlePopUp {
-  get rootEl() {
-    return $('form');
-  }
-
-  item(param) {
-    return this.rootEl.$(selectors[param]);
+export default class ListTitlePopUp extends BaseComponent {
+  constructor() {
+    super('form', selectors);
   }
 }

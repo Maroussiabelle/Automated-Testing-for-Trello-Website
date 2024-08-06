@@ -1,8 +1,8 @@
-import {$} from '@wdio/globals';
+import BaseComponent from '../common/base.component.js';
 
-export default class SearchDialogWrapper {
-  get rootEl() {
-    return $('div[data-test-id="search-dialog-dialog-wrapper"]');
+export default class SearchDialogWrapper extends BaseComponent {
+  constructor() {
+    super('div[data-test-id="search-dialog-dialog-wrapper"]');
   }
 
   getSearchResultByText(text) {

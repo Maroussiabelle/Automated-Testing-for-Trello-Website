@@ -1,4 +1,4 @@
-import {$} from '@wdio/globals';
+import BaseComponent from '../common/base.component.js';
 
 const selectors = {
   emailField: 'input#username',
@@ -7,12 +7,8 @@ const selectors = {
 
 };
 
-export default class LoginFormComponent {
-  get rootEl() {
-    return $('#WhiteboxContainer > section');
-  }
-
-  item(param) {
-    return this.rootEl.$(selectors[param]);
+export default class LoginFormComponent extends BaseComponent {
+  constructor() {
+    super('#WhiteboxContainer > section', selectors);
   }
 }

@@ -1,5 +1,5 @@
-import {$} from '@wdio/globals';
 import {TEST_DATA} from '../../../data/test.data.js';
+import BaseComponent from '../common/base.component.js';
 
 const selectors = {
   editWorkspaceBtn: 'span[data-testid="EditIcon"]',
@@ -9,12 +9,8 @@ const selectors = {
   workspaceDescription: `.//p[contains(text(), "${TEST_DATA.testWorkspaceDescription}")]`,
 };
 
-export default class WorkspaceDetails {
-  get rootEl() {
-    return $('//div[@class="js-current-details"]');
-  }
-
-  item(param) {
-    return this.rootEl.$(selectors[param]);
+export default class WorkspaceDetails extends BaseComponent {
+  constructor() {
+    super('//div[@class="js-current-details"]', selectors);
   }
 }
