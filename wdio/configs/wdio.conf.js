@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 
-dotenv.config({path: './src/configs/env/.env'});
+dotenv.config({path: './wdio/configs/env/.env'});
 
 export const config = {
   //
@@ -56,16 +56,16 @@ export const config = {
   capabilities: [
     {
       'browserName': 'chrome',
-      'goog:chromeOptions': {
-        args: ['--headless', '--window-size=1280,800'],
-      },
+      // 'goog:chromeOptions': {
+      //   args: ['--headless', '--window-size=1280,800'],
+      // },
     },
-    {
-      'browserName': 'firefox',
-      'moz:firefoxOptions': {
-        args: ['-headless'],
-      },
-    },
+    // {
+    //   'browserName': 'firefox',
+    //   'moz:firefoxOptions': {
+    //     args: ['-headless'],
+    //   },
+    // },
   ],
 
   //
@@ -138,14 +138,14 @@ export const config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ['spec', ['allure', {outputDir: 'allure-results'}]],
+  reporters: ['spec', ['allure', {outputDir: 'allure-results-ui'}]],
 
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
   mochaOpts: {
     ui: 'bdd',
     timeout: 600000, // browser.debug() timeout in milliseconds
-    retries: 1,
+    // retries: 1,
   },
 
   //
@@ -201,7 +201,7 @@ export const config = {
      * @param {object}         browser      instance of created browser/device session
      */
   before: function(capabilities, specs) {
-    browser.maximizeWindow()
+    browser.maximizeWindow();
   },
   /**
      * Runs before a WebdriverIO command gets executed.
@@ -245,10 +245,9 @@ export const config = {
      */
   afterTest: async function(test, context, {error, result, duration, passed, retries}) {
     if (!passed) {
-      await browser.takeScreenshot()
+      await browser.takeScreenshot();
     }
   },
-
 
   /**
      * Hook that gets executed after the suite has ended

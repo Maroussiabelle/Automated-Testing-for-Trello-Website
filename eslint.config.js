@@ -24,6 +24,6 @@ export default [
     },
   },
   {
-    ignores: ['src/configs/wdio.conf.js'],
+    ignores: ['wdio/configs/wdio.conf.js'],
   },
 ];
