@@ -1,3 +1,6 @@
 node_modules
 .idea
-allure-results
+allure-results-ui
+allure-report-ui
+allure-results-api
+allure-report-api
