@@ -3,14 +3,17 @@ import {TEST_DATA} from '../../data/test.data.js';
 import BasePage from './base.page.js';
 import {
   Board,
-  BoardHeader, BoardSettingsMenu,
+  BoardHeader,
+  BoardSettingsMenu,
   CardComposer,
-  CardDetailWindowComponent, CloseBoardPopOver,
+  CardDetailWindowComponent,
+  CloseBoardPopOver,
   FilterWindow,
   ListActionsMenu,
   ListTitlePopUp,
   ListWrapper,
 } from '../components/index.js';
+import DeleteBoardPopOver from '../components/newBoard/deleteBoardPopOver.component.js';
 
 export default class BoardPage extends BasePage {
   constructor(boardUrl) {
@@ -26,12 +29,12 @@ export default class BoardPage extends BasePage {
     this.filterWindow = new FilterWindow();
     this.boardSettingsMenu = new BoardSettingsMenu();
     this.closeBoardPopover = new CloseBoardPopOver();
+    this.deleteBoardPopover = new DeleteBoardPopOver();
   }
 
   async addList(title) {
     await this.board.getElement('addAlistBtn').click();
-    await this.listTitlePopUp.getElement('listTitleInputField').
-        setValue(title);
+    await this.listTitlePopUp.getElement('listTitleInputField').setValue(title);
     await browser.keys('Enter');
   }
 
@@ -63,6 +66,7 @@ export default class BoardPage extends BasePage {
     await this.boardSettingsMenu.getElement('closeBoardBtn').click();
     await this.closeBoardPopover.getElement('closeBtn').click();
     await this.boardSettingsMenu.getElement('permanentlyDeleteBoardBtn').click();
+    await this.deleteBoardPopover.getElement('confirmDeleteBtn').click();
   }
 
   async verifyBoardBackgroundCorrect(backgroundId) {

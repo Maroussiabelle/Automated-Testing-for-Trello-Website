@@ -55,10 +55,10 @@ export const config = {
   //
   capabilities: [
     {
-      'browserName': 'chrome',
-      // 'goog:chromeOptions': {
-      //   args: ['--headless', '--window-size=1280,800'],
-      // },
+      browserName: 'chrome',
+      'goog:chromeOptions': {
+        args: ['--headless', '--window-size=1280,800', '--no-sandbox'],
+      },
     },
     // {
     //   'browserName': 'firefox',

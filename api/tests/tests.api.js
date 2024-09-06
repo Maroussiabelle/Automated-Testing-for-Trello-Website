@@ -1,10 +1,5 @@
 import {expect} from 'chai';
-import {
-  createBoard,
-  deleteBoard,
-  getBoard,
-  updateBoard,
-} from '../utils/helpers/trelloBoardApiHelpers.js';
+import {createBoard, deleteBoard, getBoard, updateBoard} from '../utils/helpers/trelloBoardApiHelpers.js';
 
 describe('Trello API tests', () => {
   let boardId;
