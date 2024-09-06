@@ -17,10 +17,10 @@ export default [
       'require-jsdoc': 'off',
       'default-case': 'error',
       'semi': ['error', 'always'],
-      'no-multiple-empty-lines': ['error', {'max': 1, 'maxEOF': 0, 'maxBOF': 0}],
+      'no-multiple-empty-lines': ['error', {max: 1, maxEOF: 0, maxBOF: 0}],
       'func-call-spacing': ['error', 'never'],
       'space-in-parens': ['error', 'never'],
-      'max-len': ['error', {'code': 160}],
+      'max-len': ['error', {code: 160}],
     },
   },
   {

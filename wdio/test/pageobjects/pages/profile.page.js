@@ -11,15 +11,13 @@ export default class ProfilePage extends BasePage {
     this.profileContent = new ProfileContent();
   }
   async updateUsername(newUsername) {
-    await this.profileDataContainer.getElement('usernameInputField')
-        .setValue(newUsername);
+    await this.profileDataContainer.getElement('usernameInputField').setValue(newUsername);
     await this.profileDataContainer.getElement('saveButton').click();
     await this.flagGroup.getElement('savedCheckbox').waitForDisplayed();
   }
 
   async revertUsername(originalUsername) {
-    await this.profileDataContainer.getElement('usernameInputField')
-        .setValue(originalUsername);
+    await this.profileDataContainer.getElement('usernameInputField').setValue(originalUsername);
     await this.profileDataContainer.getElement('saveButton').click();
     await this.flagGroup.getElement('savedCheckbox').waitForDisplayed();
   }

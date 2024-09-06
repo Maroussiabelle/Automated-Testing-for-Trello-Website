@@ -16,17 +16,17 @@
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-mocha": "^10.4.3",
     "globals": "^15.8.0",
+    "prettier": "3.3.3",
     "rimraf": "^6.0.1",
     "supertest": "^7.0.0"
   },
   "scripts": {
     "lint": "eslint -c eslint.config.js wdio --fix",
-    "wdio": "wdio run wdio/configs/wdio.conf.js",
-    "test:e2e:spec": "wdio run wdio/configs/wdio.conf.js --spec wdio/test/specs/test.e2e.js",
-    "allure:report:e2e": "allure generate --single-file allure-results-ui --clean -o allure-report-ui && allure open allure-report-ui",
+    "prettier": "npx prettier ./wdio --write && npx prettier ./api --write",
+    "test:ui:spec": "rimraf allure-results-ui && wdio run wdio/configs/wdio.conf.js",
+    "allure:report:ui": "allure generate --single-file allure-results-ui --clean -o allure-report-ui && allure open allure-report-ui",
     "test:api:spec": "mocha --reporter spec 'api/tests/tests.api.js' --timeout 10000",
     "test:api:allure": "rimraf allure-results-api && mocha --reporter allure-mocha --reporter-options resultsDir=allure-results-api 'api/tests/tests.api.js' --timeout 10000",
     "allure:report:api": "allure generate --single-file allure-results-api --clean -o allure-report-api && allure open allure-report-api"
-
   }
 }
