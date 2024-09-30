@@ -12,7 +12,6 @@ export default class WorkspaceSettingsPage extends BasePage {
   }
 
   async updateWorkspaceNameAndDescription(editedWorkspaceName, testWorkspaceDescription) {
-    // await this.open();
     await this.workspaceDetails.getElement('editWorkspaceBtn').click();
     await this.workspaceDetails.getElement('workspaceNameInputField').setValue(editedWorkspaceName);
     await this.workspaceDetails.getElement('descriptionInputField').setValue(testWorkspaceDescription);

@@ -11,6 +11,6 @@ const selectors = {
 
 export default class WorkspaceDetails extends BaseComponent {
   constructor() {
-    super('//div[@class="js-current-details"]', selectors);
+    super('div#content', selectors);
   }
 }
