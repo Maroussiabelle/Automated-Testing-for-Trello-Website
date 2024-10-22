@@ -30,13 +30,15 @@ describe('Trello site functionality tests', () => {
   });
 
   it('should update the username in the user userProfile', async () => {
-    await pages('dashboard').openProfileAndVisibilitySettings();
-    await pages('profile').updateUsername(TEST_DATA.newUsername);
-    const isNewUserNameDisplayed = await pages('profile').profileContent.displayedUserName(TEST_DATA.newUsername).isDisplayed();
+    try {
+      await pages('dashboard').openProfileAndVisibilitySettings();
+      await pages('profile').updateUsername(TEST_DATA.newUsername);
+      const isNewUserNameDisplayed = await pages('profile').profileContent.displayedUserName(TEST_DATA.newUsername).isDisplayed();
 
-    chaiExpect(isNewUserNameDisplayed).to.be.true;
-
-    await pages('profile').revertUsername(TEST_DATA.originalUsername);
+      chaiExpect(isNewUserNameDisplayed).to.be.true;
+    } finally {
+      await pages('profile').revertUsername(TEST_DATA.originalUsername);
+    }
   });
 
   it('should create a new board with the specified background and title', async () => {

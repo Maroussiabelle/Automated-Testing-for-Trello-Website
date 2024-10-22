@@ -4,3 +4,5 @@ allure-results-ui
 allure-report-ui
 allure-results-api
 allure-report-api
+allure-results-cucumber
+allure-report-cucumber

@@ -5,6 +5,7 @@
     "@eslint/js": "^9.6.0",
     "@wdio/allure-reporter": "^8.39.0",
     "@wdio/cli": "^8.39.1",
+    "@wdio/cucumber-framework": "^9.0.8",
     "@wdio/local-runner": "^8.39.1",
     "@wdio/mocha-framework": "^8.39.0",
     "@wdio/spec-reporter": "^8.39.0",
@@ -23,10 +24,19 @@
   "scripts": {
     "lint": "eslint -c eslint.config.js wdio --fix",
     "prettier": "npx prettier ./wdio --write && npx prettier ./api --write",
-    "test:ui:spec": "rimraf allure-results-ui && wdio run wdio/configs/wdio.conf.js",
+    "test:ui:spec": "rimraf allure-results-ui && wdio run wdio/configs/wdio.mocha.conf.js",
     "allure:report:ui": "allure generate --single-file allure-results-ui --clean -o allure-report-ui && allure open allure-report-ui",
     "test:api:spec": "mocha --reporter spec 'api/tests/tests.api.js' --timeout 10000",
     "test:api:allure": "rimraf allure-results-api && mocha --reporter allure-mocha --reporter-options resultsDir=allure-results-api 'api/tests/tests.api.js' --timeout 10000",
-    "allure:report:api": "allure generate --single-file allure-results-api --clean -o allure-report-api && allure open allure-report-api"
+    "allure:report:api": "allure generate --single-file allure-results-api --clean -o allure-report-api && allure open allure-report-api",
+    "test:cucumber": "rimraf allure-results-cucumber && wdio run wdio/configs/wdio.cucumber.conf.js --spec wdio/test/features/**/*.feature",
+    "allure:report:cucumber": "rimraf allure-report-cucumber && allure generate allure-results-cucumber --clean -o allure-report-cucumber && allure open allure-report-cucumber",
+    "test:cucumber:boardCreation": "wdio run wdio.cucumber.conf.js --spec wdio/test/features/**/boardManagement.feature --cucumberOpts.tagExpression='@boardCreation'",
+    "test:cucumber:boardSearch": "wdio run wdio.cucumber.conf.js --spec wdio/test/features/**/boardManagement.feature --cucumberOpts.tagExpression='@boardSearch'",
+    "test:cucumber:workspaceEdition": "wdio run wdio.cucumber.conf.js --spec wdio/test/features/**/profileManagement.feature --cucumberOpts.tagExpression='@workspaceEdition'",
+    "test:cucumber:profileEdition": "wdio run wdio.cucumber.conf.js --spec wdio/test/features/**/profileManagement.feature --cucumberOpts.tagExpression='@profileEdition'",
+    "test:cucumber:listCreation": "wdio run wdio.cucumber.conf.js --spec wdio/test/features/**/listManagement.feature --cucumberOpts.tagExpression='@listCreation'",
+    "test:cucumber:cardCreation": "wdio run wdio.cucumber.conf.js --spec wdio/test/features/**/cardManagement.feature --cucumberOpts.tagExpression='@cardCreation'",
+    "test:cucumber:cardFiltering": "wdio run wdio.cucumber.conf.js --spec wdio/test/features/**/cardManagement.feature --cucumberOpts.tagExpression='@cardFiltering'"
   }
 }

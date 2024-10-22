@@ -3,4 +3,5 @@ build
 coverage
 package.json
 package-lock.json
-wdio.conf.js
+wdio/configs/wdio.mocha.conf.js
+wdio/configs/wdio.cucumber.conf.js

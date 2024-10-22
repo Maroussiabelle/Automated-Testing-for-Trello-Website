@@ -24,6 +24,12 @@ export default [
     },
   },
   {
-    ignores: ['wdio/configs/wdio.conf.js'],
+    ignores: ['wdio/configs/wdio.mocha.conf.js', 'wdio/configs/wdio.cucumber.conf.js'],
+  },
+  {
+    files: ['wdio/test/steps/*.steps.mjs'],
+    rules: {
+      'new-cap': 'off', // Disable the rule that enforces uppercase names for constructors
+    },
   },
 ];
